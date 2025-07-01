@@ -9,5 +9,6 @@ class AA2_GameWindow{
     public:
 
         AA2_GameWindow(char* title, int w, int h);
+        ~AA2_GameWindow();
 
 };
