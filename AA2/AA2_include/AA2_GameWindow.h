@@ -1,12 +1,10 @@
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 class AA2_GameWindow{
 
     private:
 
         SDL_Window *wnd;
-        int wnd_width;
-        int wnd_height;
 
     public:
 
