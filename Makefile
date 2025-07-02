@@ -7,7 +7,7 @@ SDL_include_path=SDL/SDL_include
 AA2_include_path=AA2/AA2_include
 
 # Formatting what source files g++ will be working with | Format: (path)(filename)
-source_files=$(sources_path)main.cpp $(sources_path)AA2_GameWindow.cpp
+source_files=$(sources_path)main.cpp $(sources_path)AA2_GameWindow.cpp $(sources_path)AA2_Game.cpp
 
 
 # Compilation and linkage
