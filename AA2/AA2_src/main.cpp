@@ -6,15 +6,27 @@ using namespace std;
 
 int main()
 {
-    char title[4] = "AA2";
-    AA2_Game Game;
+    AA2_Game *game = new AA2_Game();
     
-    Game.init(title, 500, 500);
+    // target frame-rate
+    const int FPS = 60;
+    // the time necessary for a single frame
+    const int frameTime = 1000 / FPS;
 
-    while(Game.checkIfRunning())
+    game->init("AA2", 500, 500);
+
+    while(game->checkIfRunning())
     {
-        Game.handleEvents();
-        Game.update();
-        Game.render();
+        int currentFrameStart = SDL_GetTicks();
+
+        game->handleEvents();
+        game->update();
+        game->render();
+
+        int currentFrameEnd = SDL_GetTicks();
+        int currentFrameTime = currentFrameEnd - currentFrameStart;
+
+        if(frameTime > currentFrameTime)
+            SDL_Delay(frameTime - currentFrameTime);
     }
 }

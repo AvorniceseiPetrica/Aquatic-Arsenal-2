@@ -12,7 +12,7 @@ class AA2_Game{
 
         AA2_Game();
         ~AA2_Game();
-        void init(char* title, int width, int heigth);
+        void init(const char* title, int width, int heigth);
         void update();
         void render();
         void handleEvents();

@@ -18,7 +18,7 @@ AA2_Game::~AA2_Game()
     SDL_Log("Game cleaned successfully. Stopping now\n");
 }
 
-void AA2_Game::init(char* title, int width, int heigth)
+void AA2_Game::init(const char* title, int width, int heigth)
 {
     if(!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -61,6 +61,7 @@ void AA2_Game::init(char* title, int width, int heigth)
 void AA2_Game::update()
 {
     SDL_SetRenderDrawColor(renderer, 25, 255, 255, 255);
+    dstR.x += 1;
 }
 
 void AA2_Game::render()
