@@ -4,16 +4,17 @@ class AA2_Game{
 
     private:
 
-        SDL_Window* window;
+        SDL_Window *window;
         SDL_Renderer *renderer;
         bool isRunning;
 
     public:
 
-        AA2_Game(char* title, int width, int heigth);
+        AA2_Game();
         ~AA2_Game();
+        void init(char* title, int width, int heigth);
         void update();
         void render();
         void handleEvents();
-        bool running();
+        bool checkIfRunning();
 };

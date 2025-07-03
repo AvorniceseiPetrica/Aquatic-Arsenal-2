@@ -1,11 +1,28 @@
 #include <iostream>
 #include "AA2_Game.h"
+#include "AA2_TextureLoader.h"
 
-AA2_Game::AA2_Game(char* title, int width, int heigth)
+SDL_Texture *txt;
+SDL_FRect dstR, srcR;
+
+AA2_Game::AA2_Game()
+{
+    
+}
+
+AA2_Game::~AA2_Game()
+{
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    SDL_Quit();
+    SDL_Log("Game cleaned successfully. Stopping now\n");
+}
+
+void AA2_Game::init(char* title, int width, int heigth)
 {
     if(!SDL_Init(SDL_INIT_VIDEO))
     {
-        SDL_Log("\t<< Could not initialize video subsystem >> | SDL_GetError() = %s\n", SDL_GetError());
+        SDL_Log("\n\t<< Could not initialize video subsystem >> | SDL_GetError() = %s\n\n", SDL_GetError());
         isRunning = false;
     }
     else
@@ -18,7 +35,7 @@ AA2_Game::AA2_Game(char* title, int width, int heigth)
 
     if(window == nullptr)
     {
-        SDL_Log("\t<< Could not create window >> | SDL_GetError() = %s\n", SDL_GetError());
+        SDL_Log("\n\t<< Could not create window >> | SDL_GetError() = %s\n\n", SDL_GetError());
         isRunning = false;
     }
     else
@@ -28,29 +45,28 @@ AA2_Game::AA2_Game(char* title, int width, int heigth)
 
     if(renderer == nullptr)
     {
-        SDL_Log("\t<< Could not create renderer >> | SDL_GetError() = %s\n", SDL_GetError());
+        SDL_Log("\n\t<< Could not create renderer >> | SDL_GetError() = %s\n\n", SDL_GetError());
         isRunning = false;
     }
     else
         SDL_Log("Renderer created successfully\n");
-}
 
-AA2_Game::~AA2_Game()
-{
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-    SDL_Quit();
-    SDL_Log("Game cleaned successfully. Stopping now\n");
+    
+    txt = AA2_TextureLoader::loadTexture("AA2/Assets/aaa.jpeg", renderer);
+    dstR.h = 50;
+    dstR.w = 50;
+    dstR.x = 10;
 }
 
 void AA2_Game::update()
 {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 25, 255, 255, 255);
 }
 
 void AA2_Game::render()
 {
     SDL_RenderClear(renderer);
+    SDL_RenderTexture(renderer, txt, nullptr, &dstR);
     SDL_RenderPresent(renderer);
 }
 
@@ -66,7 +82,7 @@ void AA2_Game::handleEvents()
     }
 }
 
-bool AA2_Game::running()
+bool AA2_Game::checkIfRunning()
 {
     return isRunning;
 }
