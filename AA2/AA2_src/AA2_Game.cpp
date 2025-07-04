@@ -18,7 +18,7 @@ AA2_Game::~AA2_Game()
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(gameRenderer); 
     SDL_Quit();
-    SDL_Log("Game cleaned successfully. Stopping now\n");
+    SDL_Log("Game cleaned successfully. Stopping now...\n");
 }
 
 void AA2_Game::init(const char* title, int width, int heigth)
@@ -30,7 +30,7 @@ void AA2_Game::init(const char* title, int width, int heigth)
     }
     else
     {
-        SDL_Log("Video subsystem initialized\n");
+        SDL_Log("Video subsystem initialized...\n");
         isRunning = true;
     }
     
@@ -42,7 +42,7 @@ void AA2_Game::init(const char* title, int width, int heigth)
         isRunning = false;
     }
     else
-        SDL_Log("Created window successfully | Title: %s | Width: %d | Height: %d\n", title, width, heigth);
+        SDL_Log("Created window successfully... | Title: %s | Width: %d | Height: %d\n", title, width, heigth);
 
     gameRenderer = SDL_CreateRenderer(window, nullptr);
 
@@ -52,7 +52,7 @@ void AA2_Game::init(const char* title, int width, int heigth)
         isRunning = false;
     }
     else
-        SDL_Log("Renderer created successfully\n");
+        SDL_Log("Renderer created successfully...\n");
     
     AA2_TextureManager MNG;
     MNG.initTextures();

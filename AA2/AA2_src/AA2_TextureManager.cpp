@@ -17,9 +17,18 @@ void AA2_TextureManager::initTextures()
     textures[0] = AA2_TextureLoader::loadTexture("AA2/Assets/blue.png", AA2_Game::getGameRenderer());
     textures[1] = AA2_TextureLoader::loadTexture("AA2/Assets/green.png", AA2_Game::getGameRenderer());
     textures[2] = AA2_TextureLoader::loadTexture("AA2/Assets/red.png", AA2_Game::getGameRenderer());
+
+    SDL_Log("Done loading textures...\n");
 }
 
 SDL_Texture* AA2_TextureManager::getTexture(int id)
 {
-    return textures[id];
+    if(id > TXT_COUNT)
+    {
+        SDL_Log("\n\t<< ID for requested texture too big >>\n\n");
+        
+        return nullptr;
+    }
+    else
+        return textures[id];
 }
