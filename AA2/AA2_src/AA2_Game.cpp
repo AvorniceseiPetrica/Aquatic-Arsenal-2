@@ -57,7 +57,6 @@ void AA2_Game::init(const char* title, int width, int heigth)
     AA2_TextureManager MNG;
     MNG.initTextures();
 
-    txt = AA2_TextureLoader::loadTexture("AA2/Assets/aaa.jpeg", gameRenderer);
     dstR.h = 50;
     dstR.w = 50;
     dstR.x = 10;

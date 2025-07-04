@@ -7,5 +7,5 @@ class AA2_TextureLoader{
 
     public:
 
-        static SDL_Texture* loadTexture(const char *filename, SDL_Renderer *renderer);
+        SDL_Texture* loadTexture(const char *filename, SDL_Renderer *renderer);
 };

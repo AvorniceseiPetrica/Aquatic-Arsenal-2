@@ -9,6 +9,7 @@ class AA2_TextureManager{
     private:
 
         SDL_Texture **textures;
+        AA2_TextureLoader *textureLoader;
 
     public:
 
