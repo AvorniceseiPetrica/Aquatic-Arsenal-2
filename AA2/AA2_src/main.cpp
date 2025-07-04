@@ -13,6 +13,7 @@ int main()
     // the time necessary for a single frame
     const int frameTime = 1000 / FPS;
 
+    system("clear");
     game->init("AA2", 500, 500);
 
     while(game->checkIfRunning())
@@ -29,4 +30,6 @@ int main()
         if(frameTime > currentFrameTime)
             SDL_Delay(frameTime - currentFrameTime);
     }
+
+    delete game;
 }

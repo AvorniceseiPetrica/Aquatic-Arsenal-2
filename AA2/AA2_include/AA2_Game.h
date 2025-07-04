@@ -5,7 +5,7 @@ class AA2_Game{
     private:
 
         SDL_Window *window;
-        SDL_Renderer *renderer;
+        static SDL_Renderer *gameRenderer;
         bool isRunning;
 
     public:
@@ -17,4 +17,5 @@ class AA2_Game{
         void render();
         void handleEvents();
         bool checkIfRunning();
+        static SDL_Renderer* getGameRenderer();
 };
