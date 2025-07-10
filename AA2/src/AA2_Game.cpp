@@ -2,11 +2,14 @@
 
 AA2_Game::AA2_Game()
 {
-
+    graphics_context = new AA2_GraphicsContext;
 }
 
 AA2_Game::~AA2_Game()
 {
+    if(graphics_context != nullptr)
+        delete graphics_context;
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -17,7 +20,7 @@ void AA2_Game::Init(const char* title, int width, int height)
 {
     if(!SDL_Init(SDL_INIT_VIDEO))
     {
-        SDL_Log("\n\tAA2_Game: << Could not initialize SDL_INIT_VIDEO >>\n\n");
+        SDL_Log("\n\tAA2_Game::Init()\t<< Could not initialize SDL_INIT_VIDEO >>\n\n");
         is_running = false;
     }
     else
@@ -28,7 +31,7 @@ void AA2_Game::Init(const char* title, int width, int height)
 
         if(window == nullptr)
         {
-            SDL_Log("\n\tAA2_Game: << Could not create window >>\n\n");
+            SDL_Log("\n\tAA2_Game:Init()\t<< Could not create window >>\n\n");
             is_running = false;
         }
         else
@@ -38,12 +41,15 @@ void AA2_Game::Init(const char* title, int width, int height)
         
         if(renderer == nullptr)
         {
-            SDL_Log("\n\tAA2_Game: << Could not create renderer >>\n\n");
+            SDL_Log("\n\tAA2_Game::Init()\t<< Could not create renderer >>\n\n");
             is_running = false;
         }
         else
             SDL_Log("Created renderer...\n");
     }
+
+    graphics_context->window = window;
+    graphics_context->renderer = renderer;
 }
 
 void AA2_Game::Update()

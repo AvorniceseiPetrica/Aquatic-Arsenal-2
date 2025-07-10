@@ -12,8 +12,9 @@ class AA2_Tile{
 
     public:
 
-        AA2_Tile(int id, bool is_solid);
+        AA2_Tile(int p_id, bool p_is_solid);
         ~AA2_Tile();
         void Render();
         bool IsSolid();
+        void SetTexture(SDL_Texture *p_texture);
 };
