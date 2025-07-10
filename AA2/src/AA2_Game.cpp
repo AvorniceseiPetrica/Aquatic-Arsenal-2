@@ -1,0 +1,80 @@
+#include "AA2_Game.h"
+
+AA2_Game::AA2_Game()
+{
+
+}
+
+AA2_Game::~AA2_Game()
+{
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    SDL_Log("Game cleaned...\n");
+}
+
+void AA2_Game::Init(const char* title, int width, int height)
+{
+    if(!SDL_Init(SDL_INIT_VIDEO))
+    {
+        SDL_Log("\n\tAA2_Game: << Could not initialize SDL_INIT_VIDEO >>\n\n");
+        is_running = false;
+    }
+    else
+    {
+        SDL_Log("Initialized video subsystems...\n");
+        is_running = true;
+        window = SDL_CreateWindow(title, width, height, 0);
+
+        if(window == nullptr)
+        {
+            SDL_Log("\n\tAA2_Game: << Could not create window >>\n\n");
+            is_running = false;
+        }
+        else
+            SDL_Log("Created window...\n");
+
+        renderer = SDL_CreateRenderer(window, nullptr);
+        
+        if(renderer == nullptr)
+        {
+            SDL_Log("\n\tAA2_Game: << Could not create renderer >>\n\n");
+            is_running = false;
+        }
+        else
+            SDL_Log("Created renderer...\n");
+    }
+}
+
+void AA2_Game::Update()
+{
+    SDL_SetRenderDrawColor(renderer, 0xff, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
+}
+
+void AA2_Game::Render()
+{
+    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 0xaa, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
+    const SDL_FRect A = {.x = 100, .y = 100, .w = 100, .h = 100};
+    SDL_RenderRect(renderer, &A);
+    SDL_RenderPresent(renderer);
+}
+
+bool AA2_Game::IsRunning()
+{
+    return is_running;
+}
+
+void AA2_Game::HandleEvents()
+{
+    SDL_Event e;
+
+    while(SDL_PollEvent(&e))
+    {
+        if(e.type == SDL_EVENT_QUIT)
+        {
+            SDL_Log("User requested quitting...\n");
+            is_running = false;
+        }
+    }
+}

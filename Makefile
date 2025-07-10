@@ -1,11 +1,17 @@
-sources_path=AA2/
+exe=aa2
+
+sources_path=AA2/src/
 SDL_include_path=SDL/include
+AA2_include_path=AA2/include
 SDL_libraries_path=SDL/lib
 
-main:
-	g++ $(sources_path)main.cpp -Wall -o main -I$(SDL_include_path) -L$(SDL_libraries_path) -lSDL3 -lSDL3_image
+SOURCES=$(sources_path)main.cpp \
+		$(sources_path)AA2_Game.cpp
+
+$(exe): $(SOURCES)
+	g++ $(SOURCES) -Wall -o $(exe) -I$(SDL_include_path) -I$(AA2_include_path) -L$(SDL_libraries_path) -lSDL3 -lSDL3_image
 
 
 .PHONY:
 clean:
-	rm -f main
+	rm -f $(exe)
