@@ -19,9 +19,14 @@ AA2_TileManager::~AA2_TileManager()
 
 void AA2_TileManager::Init()
 {
-    tiles[0] = new AA2_Tile(0, false);
-    tiles[1] = new AA2_Tile(1, true);
-    tiles[2] = new AA2_Tile(2, true);
+    tiles[0] = new AA2_Tile(graphics_context, 0, false);
+    LoadTileTexture(0, "Assets/blue.png");
+
+    tiles[1] = new AA2_Tile(graphics_context, 1, true);
+    LoadTileTexture(1, "Assets/red.png");
+    
+    tiles[2] = new AA2_Tile(graphics_context, 2, true);
+    LoadTileTexture(2, "Assets/yellow.png");
 }
 
 void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)
@@ -47,6 +52,6 @@ AA2_Tile* AA2_TileManager::GetTile(int id)
 {
     if(id >= TILE_COUNT || id < 0)
         SDL_Log("\n\tAA2_TileManager::GetTile():\t<< Invalid id provided >>\n\n");
-    else
-        return tiles[id];
+    
+    return tiles[id];
 }
