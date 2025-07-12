@@ -4,6 +4,7 @@
 #define WINDOW_HEIGHT 1080
 
 #define TILE_COUNT 3
+#define BACKGROUND_COUNT 1
 
 #define TILE_WIDTH 128
 #define TILE_HEIGHT 128
