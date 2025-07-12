@@ -1,7 +1,9 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+
 #include "AA2_GraphicsContext.h"
+#include "AA2_Map.h"
 
 class AA2_Game{
 
@@ -10,6 +12,7 @@ class AA2_Game{
         SDL_Window *window = nullptr;
         SDL_Renderer *renderer = nullptr;
         bool is_running = false;
+        AA2_Map *map;
 
         AA2_GraphicsContext *graphics_context = nullptr;
 

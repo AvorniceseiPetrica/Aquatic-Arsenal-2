@@ -1,10 +1,9 @@
 #pragma once
 
-#include "AA2_Tile.h"
-#include "AA2_GraphicsContext.h"
 #include <SDL3_image/SDL_image.h>
 
-#define TILE_COUNT 3
+#include "AA2_Tile.h"
+#include "AA2_GraphicsContext.h"
 
 class AA2_TileManager{
 
@@ -12,7 +11,7 @@ class AA2_TileManager{
 
         AA2_Tile *tiles[TILE_COUNT];
 
-        AA2_GraphicsContext *graphics_context;
+        AA2_GraphicsContext *graphics_context = nullptr;
 
     public:
 

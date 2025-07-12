@@ -1,9 +1,11 @@
 #include "AA2_Game.h"
-#include "AA2_TileManager.h"
+#include "AA2_Map.h"
+#include <iostream>
 
 AA2_Game::AA2_Game()
 {
     graphics_context = new AA2_GraphicsContext;
+    map = new AA2_Map(graphics_context);
 }
 
 AA2_Game::~AA2_Game()
@@ -51,6 +53,12 @@ void AA2_Game::Init(const char* title, int width, int height)
 
     graphics_context->window = window;
     graphics_context->renderer = renderer;
+
+    map->Init();
+    map->PrintMapInfo();
+    printf("\n");
+    map->LoadMap("Assets/Maps/Map.txt");
+    map->PrintMapInfo();
 }
 
 void AA2_Game::Update()
@@ -61,11 +69,9 @@ void AA2_Game::Update()
 void AA2_Game::Render()
 {
     SDL_RenderClear(renderer);
-    AA2_TileManager TM(graphics_context);
 
-    TM.Init();
-    TM.GetTile(0)->Render(100, 100);
-    TM.GetTile(0)->Render(100, 400);
+    map->Render();
+    
     SDL_RenderPresent(renderer);
 }
 

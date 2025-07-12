@@ -25,8 +25,11 @@ void AA2_Tile::Render(float x, float y)
 {
     SDL_FRect dst;
 
-    dst.h = 128;
-    dst.w = 128;
+    if(texture == nullptr)
+        SDL_Log("\n\tAA2_Tile::Render()\t<< NULL texture for tile %d >>", id);
+
+    dst.h = TILE_HEIGHT;
+    dst.w = TILE_WIDTH;
     dst.x = x;
     dst.y = y;
     SDL_RenderTexture(graphics_context->renderer, texture, nullptr, &dst);

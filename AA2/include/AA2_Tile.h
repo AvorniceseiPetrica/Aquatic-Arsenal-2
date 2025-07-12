@@ -1,7 +1,9 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+
 #include "AA2_GraphicsContext.h"
+#include "AA2_Config.h"
 
 class AA2_Tile{
 
