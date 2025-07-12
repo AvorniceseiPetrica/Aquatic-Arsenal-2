@@ -70,6 +70,15 @@ void AA2_Game::Render()
 {
     SDL_RenderClear(renderer);
 
+    AA2_TextureLoader T(graphics_context);
+    SDL_FRect dst;
+    dst.h = 1080;
+    dst.w = 1920;
+    dst.x= 0;
+    dst.y= 0;
+    SDL_Texture *txt = T.LoadTexture("Assets/Backgrounds/background.png");
+    SDL_RenderTexture(graphics_context->renderer, txt, nullptr, &dst);
+
     map->Render();
     
     SDL_RenderPresent(renderer);

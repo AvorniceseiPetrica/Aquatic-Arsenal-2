@@ -28,13 +28,13 @@ AA2_TileManager::~AA2_TileManager()
 void AA2_TileManager::Init()
 {
     tiles[0] = new AA2_Tile(graphics_context, 0, false);
-    LoadTileTexture(0, "Assets/empty.png");
+    LoadTileTexture(0, "Assets/Tiles/empty.png");
 
     tiles[1] = new AA2_Tile(graphics_context, 1, true);
-    LoadTileTexture(1, "Assets/dirt.png");
+    LoadTileTexture(1, "Assets/Tiles/dirt.png");
     
     tiles[2] = new AA2_Tile(graphics_context, 2, true);
-    LoadTileTexture(2, "Assets/grass.png");
+    LoadTileTexture(2, "Assets/Tiles/grass.png");
 }
 
 void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)
