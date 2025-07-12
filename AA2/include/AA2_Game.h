@@ -20,7 +20,7 @@ class AA2_Game{
         
         AA2_Game();
         ~AA2_Game();
-        void Init(const char* title, int width, int height);
+        void Init(const char* title);
         void Update();
         void Render();
         bool IsRunning();

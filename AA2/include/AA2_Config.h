@@ -1,10 +1,13 @@
 #pragma once
 
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+
 #define TILE_COUNT 3
 
 #define TILE_WIDTH 128
 #define TILE_HEIGHT 128
 
-#define MAP_WiDTH 3
-#define MAP_HEIGHT 3
+#define MAP_WiDTH WINDOW_WIDTH / TILE_WIDTH
+#define MAP_HEIGHT WINDOW_HEIGHT / TILE_HEIGHT
 

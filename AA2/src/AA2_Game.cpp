@@ -19,7 +19,7 @@ AA2_Game::~AA2_Game()
     SDL_Log("Game cleaned...\n");
 }
 
-void AA2_Game::Init(const char* title, int width, int height)
+void AA2_Game::Init(const char* title)
 {
     if(!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -30,7 +30,7 @@ void AA2_Game::Init(const char* title, int width, int height)
     {
         SDL_Log("Initialized video subsystems...\n");
         is_running = true;
-        window = SDL_CreateWindow(title, width, height, 0);
+        window = SDL_CreateWindow(title, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
         if(window == nullptr)
         {

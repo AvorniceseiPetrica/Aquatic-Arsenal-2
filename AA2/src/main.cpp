@@ -11,7 +11,7 @@ int main()
 
     game = new AA2_Game();
     system("clear");
-    game->Init("AA2", 500, 500);
+    game->Init("AA2");
 
     while(game->IsRunning())
     {
