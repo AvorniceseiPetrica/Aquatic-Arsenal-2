@@ -19,4 +19,6 @@ class AA2_Map{
         void LoadMap(const char* map_path);
         void Render();
         void PrintMapInfo();
+        int GetTileId(int i, int j);
+        bool IsTileSolid(int id);
 };

@@ -72,3 +72,19 @@ void AA2_Map::PrintMapInfo()
         printf("\n");
     }
 }
+
+int AA2_Map::GetTileId(int i, int j)
+{
+    if(i >= MAP_HEIGHT || j >= MAP_WiDTH)
+        SDL_Log("\n\tAA2_Map::GetTileId()\t<< Invalid matrix index >>\n\n");
+    
+    return tilemap[i][j];
+}
+
+bool AA2_Map::IsTileSolid(int id)
+{
+    if(id >= TILE_COUNT)
+        SDL_Log("\n\nAA2_Map::IsTileSolid()\t<< Invalid id for tile >>\n\n");
+    
+    return tile_manager->GetTile(id)->IsSolid();
+}

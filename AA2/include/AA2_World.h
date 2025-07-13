@@ -9,6 +9,8 @@ class AA2_World{
 
         AA2_Map *map = nullptr;
         AA2_Player *player = nullptr;
+        float player_spawn_x = 200;
+        float player_spawn_y = 200;
 
         AA2_GraphicsContext *graphics_context = nullptr;
 
