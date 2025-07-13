@@ -1,5 +1,7 @@
 #include "AA2_Game.h"
 #include "AA2_Map.h"
+#include "AA2_Player.h"
+
 #include <iostream>
 
 AA2_Game::AA2_Game()
@@ -59,11 +61,16 @@ void AA2_Game::Init(const char* title)
     printf("\n");
     map->LoadMap("Assets/Maps/Map.txt");
     map->PrintMapInfo();
+
+    SDL_FRect dst = {.x = 10, .y = 10, .w = 128, .h = 128};
+    P = new AA2_Player(graphics_context, &dst);
+    P->Init("Assets/Tiles/red.png");
 }
 
 void AA2_Game::Update()
 {
     SDL_SetRenderDrawColor(renderer, 0xff, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
+    P->Update();
 }
 
 void AA2_Game::Render()
@@ -80,6 +87,8 @@ void AA2_Game::Render()
     SDL_RenderTexture(graphics_context->renderer, txt, nullptr, &dst);
 
     map->Render();
+
+    P->Render();
     
     SDL_RenderPresent(renderer);
 }

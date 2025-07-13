@@ -10,7 +10,10 @@ SOURCES=$(sources_path)main.cpp \
 		$(sources_path)AA2_Tile.cpp \
 		$(sources_path)AA2_TileManager.cpp \
 		$(sources_path)AA2_Map.cpp \
-		$(sources_path)AA2_TextureLoader.cpp
+		$(sources_path)AA2_TextureLoader.cpp \
+		$(sources_path)AA2_Entity.cpp \
+		$(sources_path)AA2_Creature.cpp \
+		$(sources_path)AA2_Player.cpp
 
 $(exe): $(SOURCES)
 	g++ $(SOURCES) -Wall -o $(exe) -I$(SDL_include_path) -I$(AA2_include_path) -L$(SDL_libraries_path) -lSDL3 -lSDL3_image
