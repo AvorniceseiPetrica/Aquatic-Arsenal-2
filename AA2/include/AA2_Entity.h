@@ -15,7 +15,7 @@ class AA2_Entity{
     public:
 
         AA2_Entity(AA2_GraphicsContext *p_graphics_context, SDL_FRect *p_data);
-        ~AA2_Entity();
+        virtual ~AA2_Entity() = 0;
         virtual void Update() = 0;
         virtual void Render() = 0;
 };
