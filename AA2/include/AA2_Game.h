@@ -5,6 +5,7 @@
 #include "AA2_GraphicsContext.h"
 #include "AA2_Map.h"
 #include "AA2_Player.h"
+#include "AA2_World.h"
 
 class AA2_Game{
 
@@ -13,8 +14,7 @@ class AA2_Game{
         SDL_Window *window = nullptr;
         SDL_Renderer *renderer = nullptr;
         bool is_running = false;
-        AA2_Map *map;
-        AA2_Player *P;
+        AA2_World *world = nullptr;
 
         AA2_GraphicsContext *graphics_context = nullptr;
 

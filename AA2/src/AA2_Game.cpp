@@ -7,13 +7,15 @@
 AA2_Game::AA2_Game()
 {
     graphics_context = new AA2_GraphicsContext;
-    map = new AA2_Map(graphics_context);
 }
 
 AA2_Game::~AA2_Game()
 {
     if(graphics_context != nullptr)
         delete graphics_context;
+
+    if(world != nullptr)
+        delete world;
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
@@ -55,40 +57,21 @@ void AA2_Game::Init(const char* title)
 
     graphics_context->window = window;
     graphics_context->renderer = renderer;
-
-    map->Init();
-    map->PrintMapInfo();
-    printf("\n");
-    map->LoadMap("Assets/Maps/Map.txt");
-    map->PrintMapInfo();
-
-    SDL_FRect dst = {.x = 10, .y = 10, .w = 128, .h = 128};
-    P = new AA2_Player(graphics_context, &dst);
-    P->Init("Assets/Tiles/red.png");
+    world = new AA2_World(graphics_context);
+    world->Init();
 }
 
 void AA2_Game::Update()
 {
     SDL_SetRenderDrawColor(renderer, 0xff, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
-    P->Update();
+    world->Update();
 }
 
 void AA2_Game::Render()
 {
     SDL_RenderClear(renderer);
 
-    AA2_TextureLoader T(graphics_context);
-    SDL_FRect dst;
-    dst.h = 1080;
-    dst.w = 1920;
-    dst.x= 0;
-    dst.y= 0;
-    SDL_Texture *txt = T.LoadTexture("Assets/Backgrounds/background.png");
-    SDL_RenderTexture(graphics_context->renderer, txt, nullptr, &dst);
-
-    map->Render();
-
-    P->Render();
+    world->Render();    
     
     SDL_RenderPresent(renderer);
 }

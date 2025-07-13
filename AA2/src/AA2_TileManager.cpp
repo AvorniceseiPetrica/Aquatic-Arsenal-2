@@ -46,7 +46,7 @@ void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)
 AA2_Tile* AA2_TileManager::GetTile(int id)
 {
     if(id >= TILE_COUNT || id < 0)
-        SDL_Log("\n\tAA2_TileManager::GetTile():\t<< Invalid id provided >>\n\n");
+        SDL_Log("\n\tAA2_TileManager::GetTile():\t<< Invalid id provided | id = %d >>\n\n", id);
     
     return tiles[id];
 }
