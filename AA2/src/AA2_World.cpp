@@ -32,7 +32,7 @@ void AA2_World::Init()
     map->Init();
     map->LoadMap("Assets/Maps/Map.txt");
     map->PrintMapInfo();
-    player->Init("Assets/Tiles/red.png");
+    player->Init(player_texture_path);
 }
 
 void AA2_World::Update()

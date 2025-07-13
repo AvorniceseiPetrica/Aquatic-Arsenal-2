@@ -35,10 +35,10 @@ void AA2_Player::Update()
     if (keystates[SDL_SCANCODE_D]) new_x += speed;
 
     collision_upper_left = CheckCollision(new_x, new_y);
-    collision_lower_left = CheckCollision(new_x, new_y + 128);
-    collision_upper_right = CheckCollision(new_x + 128, new_y);
-    collision_lower_right = CheckCollision(new_x + 128, new_y + 128);
-    
+    collision_lower_left = CheckCollision(new_x, new_y + height);
+    collision_upper_right = CheckCollision(new_x + width, new_y);
+    collision_lower_right = CheckCollision(new_x + width, new_y + height);
+
     if(
         !collision_lower_left &&
         !collision_lower_right &&
@@ -58,8 +58,8 @@ void AA2_Player::Render()
 
 bool AA2_Player::CheckCollision(int x, int y)
 {
-    int tile_x = (x / TILE_WIDTH);
-    int tile_y = (y / TILE_HEIGHT);
+    int tile_x = x / TILE_WIDTH;
+    int tile_y = y / TILE_HEIGHT;
     int tile_id = game_map->GetTileId(tile_y, tile_x);
 
     if(game_map->IsTileSolid(tile_id))

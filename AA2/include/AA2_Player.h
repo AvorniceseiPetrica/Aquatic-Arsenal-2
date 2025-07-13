@@ -10,6 +10,8 @@ class AA2_Player : public AA2_Creature{
         int speed = 10;
         int jump_strength = 10;
         int gravity = 1;
+        int width = 128;
+        int height = 128;
         AA2_Map *game_map = nullptr;
 
     public:

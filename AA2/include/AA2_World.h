@@ -11,6 +11,7 @@ class AA2_World{
         AA2_Player *player = nullptr;
         float player_spawn_x = 200;
         float player_spawn_y = 200;
+        const char* player_texture_path = "Assets/Tiles/red.png";
 
         AA2_GraphicsContext *graphics_context = nullptr;
 
