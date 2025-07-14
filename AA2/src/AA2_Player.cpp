@@ -16,7 +16,7 @@ AA2_Player::~AA2_Player()
 
 void AA2_Player::Init(const char *texture_path)
 {
-    texture = texture_loader->LoadTexture(texture_path);
+    texture = AA2_TextureLoader::LoadTexture(texture_path);
 }
 
 void AA2_Player::Update()

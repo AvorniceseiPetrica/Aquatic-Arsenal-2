@@ -10,8 +10,6 @@ class AA2_TileManager{
     private:
 
         AA2_Tile *tiles[TILE_COUNT];
-        SDL_Texture *backgrounds[BACKGROUND_COUNT];
-        AA2_TextureLoader *texture_loader = nullptr;
 
     public:
 

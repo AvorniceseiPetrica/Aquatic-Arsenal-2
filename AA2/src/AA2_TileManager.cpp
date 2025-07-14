@@ -4,20 +4,12 @@ AA2_TileManager::AA2_TileManager()
 {
     for(int i = 0; i < TILE_COUNT; i++)
         tiles[i] = nullptr;
-
-    for(int i = 0; i < BACKGROUND_COUNT; i++)
-        backgrounds[i] = nullptr;
-
-    texture_loader = new AA2_TextureLoader();
 }
 
 AA2_TileManager::~AA2_TileManager()
 {
     for(int i = 0; i < TILE_COUNT; i++)
         delete tiles[i];
-    
-    if(texture_loader != nullptr)
-        delete texture_loader;
 }
 
 void AA2_TileManager::Init()
@@ -34,7 +26,7 @@ void AA2_TileManager::Init()
 
 void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)
 {
-    SDL_Texture *tile_texture = texture_loader->LoadTexture(texture_path);
+    SDL_Texture *tile_texture = AA2_TextureLoader::LoadTexture(texture_path);
     tiles[id]->SetTexture(tile_texture);
 }
 

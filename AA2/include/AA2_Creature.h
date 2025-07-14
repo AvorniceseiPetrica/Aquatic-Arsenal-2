@@ -8,7 +8,6 @@ class AA2_Creature : public AA2_Entity{
     protected:
 
         SDL_Texture *texture = nullptr;
-        AA2_TextureLoader *texture_loader = nullptr;
 
     public:
 

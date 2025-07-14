@@ -1,15 +1,5 @@
 #include "AA2_TextureLoader.h"
 
-AA2_TextureLoader::AA2_TextureLoader()
-{
-
-}
-
-AA2_TextureLoader::~AA2_TextureLoader()
-{
-
-}
-
 SDL_Texture* AA2_TextureLoader::LoadTexture(const char *texture_path)
 {
     SDL_Surface *surface = IMG_Load(texture_path);
