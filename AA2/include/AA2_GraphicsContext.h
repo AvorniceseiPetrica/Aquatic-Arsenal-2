@@ -2,8 +2,15 @@
 
 #include <SDL3/SDL.h>
 
-struct AA2_GraphicsContext{
+class AA2_GraphicsContext{
 
-    SDL_Window* window;
-    SDL_Renderer* renderer;
+    private:
+
+        static SDL_Window* window;
+        static SDL_Renderer* renderer;
+
+    public:
+
+        static void Init(SDL_Window *p_window, SDL_Renderer *p_renderer);
+        static SDL_Renderer* GetRenderer();
 };

@@ -1,8 +1,8 @@
 #include "AA2_Creature.h"
 
-AA2_Creature::AA2_Creature(AA2_GraphicsContext *p_graphics_context, SDL_FRect *p_data) : AA2_Entity(p_graphics_context, p_data)
+AA2_Creature::AA2_Creature(SDL_FRect *p_data) : AA2_Entity(p_data)
 {
-    texture_loader = new AA2_TextureLoader(p_graphics_context);
+    texture_loader = new AA2_TextureLoader();
 }
 
 AA2_Creature::~AA2_Creature()

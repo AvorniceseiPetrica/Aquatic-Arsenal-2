@@ -14,7 +14,8 @@ SOURCES=$(sources_path)main.cpp \
 		$(sources_path)AA2_Entity.cpp \
 		$(sources_path)AA2_Creature.cpp \
 		$(sources_path)AA2_Player.cpp \
-		$(sources_path)AA2_World.cpp
+		$(sources_path)AA2_World.cpp \
+		$(sources_path)AA2_GraphicsContext.cpp
 
 $(exe): $(SOURCES)
 	g++ $(SOURCES) -Wall -o $(exe) -I$(SDL_include_path) -I$(AA2_include_path) -L$(SDL_libraries_path) -lSDL3 -lSDL3_image

@@ -10,11 +10,9 @@ class AA2_Entity{
 
         SDL_FRect *data;
 
-        AA2_GraphicsContext *graphics_context;
-
     public:
 
-        AA2_Entity(AA2_GraphicsContext *p_graphics_context, SDL_FRect *p_data);
+        AA2_Entity(SDL_FRect *p_data);
         virtual ~AA2_Entity() = 0;
         virtual void Update() = 0;
         virtual void Render() = 0;

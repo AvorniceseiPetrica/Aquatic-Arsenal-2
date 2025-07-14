@@ -1,14 +1,9 @@
 #include "AA2_Map.h"
 #include <fstream>
 
-AA2_Map::AA2_Map(AA2_GraphicsContext *p_graphics_context)
+AA2_Map::AA2_Map()
 {
-    if(p_graphics_context == nullptr)
-        SDL_Log("\n\tAA2_Map::AA2_Map()\t<< Provided NULL for (AA2_GraphicsContext *p_context) >>\n\n");
-    else
-        graphics_context = p_graphics_context;
-
-    tile_manager = new AA2_TileManager(graphics_context);
+    tile_manager = new AA2_TileManager();
 }
 
 AA2_Map::~AA2_Map()

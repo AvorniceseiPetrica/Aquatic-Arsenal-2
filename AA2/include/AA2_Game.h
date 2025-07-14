@@ -16,7 +16,7 @@ class AA2_Game{
         bool is_running = false;
         AA2_World *world = nullptr;
 
-        AA2_GraphicsContext *graphics_context = nullptr;
+        AA2_GraphicsContext *graphics_context;
 
     public:
         

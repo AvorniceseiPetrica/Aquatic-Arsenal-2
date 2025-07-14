@@ -1,6 +1,6 @@
 #include "AA2_World.h"
 
-AA2_World::AA2_World(AA2_GraphicsContext *p_graphics_context)
+AA2_World::AA2_World()
 {
     SDL_FRect dst = {
         .x = player_spawn_x,
@@ -9,13 +9,8 @@ AA2_World::AA2_World(AA2_GraphicsContext *p_graphics_context)
         .h = 128
     };
 
-    if(p_graphics_context == nullptr)
-        SDL_Log("\n\tAA2_World::AA2_World()\t<< Provided NULL for (AA2_GraphicsContext *p_graphics_context) >>\n\n");
-    else
-        graphics_context = p_graphics_context;
-
-    map = new AA2_Map(graphics_context);
-    player = new AA2_Player(graphics_context, &dst, map);
+    map = new AA2_Map();
+    player = new AA2_Player(&dst, map);
 }
 
 AA2_World::~AA2_World()

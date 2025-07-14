@@ -1,7 +1,7 @@
 #include "AA2_Player.h"
 #include <iostream>
 
-AA2_Player::AA2_Player(AA2_GraphicsContext *p_graphics_context, SDL_FRect *p_data, AA2_Map *p_game_map) : AA2_Creature(p_graphics_context, p_data)
+AA2_Player::AA2_Player(SDL_FRect *p_data, AA2_Map *p_game_map) : AA2_Creature(p_data)
 {
     if(p_game_map == nullptr)
         SDL_Log("\n\tAA2_Player::AA2_Player()\t<< Provided NULL for (AA2_Map *p_game_map) >>\n\n");
@@ -53,7 +53,7 @@ void AA2_Player::Update()
 
 void AA2_Player::Render()
 {
-    SDL_RenderTexture(graphics_context->renderer, texture, nullptr, data);
+    SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), texture, nullptr, data);
 }
 
 bool AA2_Player::CheckCollision(int x, int y)

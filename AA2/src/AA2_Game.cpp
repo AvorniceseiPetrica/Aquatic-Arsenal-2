@@ -55,9 +55,8 @@ void AA2_Game::Init(const char* title)
             SDL_Log("Created renderer...\n");
     }
 
-    graphics_context->window = window;
-    graphics_context->renderer = renderer;
-    world = new AA2_World(graphics_context);
+    graphics_context->Init(window, renderer);
+    world = new AA2_World();
     world->Init();
 }
 

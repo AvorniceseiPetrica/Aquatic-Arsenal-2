@@ -1,6 +1,6 @@
 #include "AA2_TileManager.h"
 
-AA2_TileManager::AA2_TileManager(AA2_GraphicsContext *p_graphics_context)
+AA2_TileManager::AA2_TileManager()
 {
     for(int i = 0; i < TILE_COUNT; i++)
         tiles[i] = nullptr;
@@ -8,12 +8,7 @@ AA2_TileManager::AA2_TileManager(AA2_GraphicsContext *p_graphics_context)
     for(int i = 0; i < BACKGROUND_COUNT; i++)
         backgrounds[i] = nullptr;
 
-    if(p_graphics_context == nullptr)
-        SDL_Log("\n\tAA2_TileManager::AA2_TileManager()\t<< Provided NULL for (AA2_GraphicsContext *p_graphics_context) >>\n\n");
-    else
-        graphics_context = p_graphics_context;
-
-    texture_loader = new AA2_TextureLoader(graphics_context);
+    texture_loader = new AA2_TextureLoader();
 }
 
 AA2_TileManager::~AA2_TileManager()
@@ -27,13 +22,13 @@ AA2_TileManager::~AA2_TileManager()
 
 void AA2_TileManager::Init()
 {
-    tiles[0] = new AA2_Tile(graphics_context, 0, false);
+    tiles[0] = new AA2_Tile(0, false);
     LoadTileTexture(0, "Assets/Tiles/empty.png");
 
-    tiles[1] = new AA2_Tile(graphics_context, 1, true);
+    tiles[1] = new AA2_Tile(1, true);
     LoadTileTexture(1, "Assets/Tiles/dirt.png");
     
-    tiles[2] = new AA2_Tile(graphics_context, 2, true);
+    tiles[2] = new AA2_Tile(2, true);
     LoadTileTexture(2, "Assets/Tiles/grass.png");
 }
 
