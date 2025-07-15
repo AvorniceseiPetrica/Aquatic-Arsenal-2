@@ -1,7 +1,7 @@
 #include "AA2_Player.h"
 #include <iostream>
 
-AA2_Player::AA2_Player(SDL_FRect *p_data, AA2_Map *p_game_map) : AA2_Creature(p_data)
+AA2_Player::AA2_Player(SDL_Rect *p_data, AA2_Map *p_game_map) : AA2_Creature(p_data)
 {
     if(p_game_map == nullptr)
         SDL_Log("\n\tAA2_Player::AA2_Player()\t<< Provided NULL for (AA2_Map *p_game_map) >>\n\n");
@@ -14,9 +14,11 @@ AA2_Player::~AA2_Player()
 
 }
 
-void AA2_Player::Init(const char *texture_path)
+void AA2_Player::Init()
 {
     texture = AA2_TextureLoader::LoadTexture(texture_path);
+    data->w = width;
+    data->h = height;
 }
 
 void AA2_Player::Update()
@@ -53,7 +55,13 @@ void AA2_Player::Update()
 
 void AA2_Player::Render()
 {
-    SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), texture, nullptr, data);
+    SDL_FRect dst = {
+        .x = (float)data->x,
+        .y = (float)data->y,
+        .w = (float)data->w,
+        .h = (float)data->h
+    };
+    SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), texture, nullptr, &dst);
 }
 
 bool AA2_Player::CheckCollision(int x, int y)
@@ -67,4 +75,13 @@ bool AA2_Player::CheckCollision(int x, int y)
     
     return false;
 
+}
+
+SDL_Rect* AA2_Player::GetRect()
+{
+    if(data != nullptr)
+        return data;
+    else
+        SDL_Log("RAAAAH");
+    return nullptr;
 }

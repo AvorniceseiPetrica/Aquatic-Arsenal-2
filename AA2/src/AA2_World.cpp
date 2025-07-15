@@ -1,12 +1,11 @@
 #include "AA2_World.h"
+#include "AA2_GameContext.h"
 
 AA2_World::AA2_World()
 {
-    SDL_FRect dst = {
+    SDL_Rect dst = {
         .x = player_spawn_x,
         .y = player_spawn_y,
-        .w = 128,
-        .h = 128
     };
 
     map = new AA2_Map();
@@ -20,19 +19,26 @@ AA2_World::~AA2_World()
 
     if(player != nullptr)
         delete player;
+
+    if(camera != nullptr)
+        delete camera;
 }
 
 void AA2_World::Init()
 {
+    camera = AA2_GameContext::GetCamera();
     map->Init();
     map->LoadMap("Assets/Maps/Map.txt");
     map->PrintMapInfo();
-    player->Init(player_texture_path);
+    player->Init();
+    camera->SetTarget(player->GetRect());
 }
 
 void AA2_World::Update()
 {
     player->Update();
+    camera->Update();
+    camera->PrintInfo();
 }
 
 void AA2_World::Render()

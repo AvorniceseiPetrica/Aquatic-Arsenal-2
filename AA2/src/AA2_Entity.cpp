@@ -1,12 +1,12 @@
 #include "AA2_Entity.h"
 
-AA2_Entity::AA2_Entity(SDL_FRect *p_data)
+AA2_Entity::AA2_Entity(SDL_Rect *p_data)
 {
     if(p_data == nullptr)
-        SDL_Log("\n\tAA2_Entity::AA2_Entity()\t<< Provided NULL for (SDL_FRect *p_data) >>\n\n");
+        SDL_Log("\n\tAA2_Entity::AA2_Entity()\t<< Provided NULL for (SDL_Rect *p_data) >>\n\n");
     else
     {
-        data = new SDL_FRect;
+        data = new SDL_Rect;
         data->w = p_data->w;
         data->h = p_data->h;
         data->x = p_data->x;

@@ -2,6 +2,7 @@
 
 #include "AA2_Map.h"
 #include "AA2_Player.h"
+#include "AA2_Camera.h"
 
 class AA2_World{
 
@@ -9,9 +10,9 @@ class AA2_World{
 
         AA2_Map *map = nullptr;
         AA2_Player *player = nullptr;
-        float player_spawn_x = 200;
-        float player_spawn_y = 200;
-        const char* player_texture_path = "Assets/Tiles/red.png";
+        int player_spawn_x = 200;
+        int player_spawn_y = 200;
+        AA2_Camera *camera = nullptr;
 
     public:
 

@@ -8,11 +8,11 @@ class AA2_Entity{
 
     protected:
 
-        SDL_FRect *data;
+        SDL_Rect *data;
 
     public:
 
-        AA2_Entity(SDL_FRect *p_data);
+        AA2_Entity(SDL_Rect *p_data);
         virtual ~AA2_Entity() = 0;
         virtual void Update() = 0;
         virtual void Render() = 0;
