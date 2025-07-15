@@ -10,8 +10,6 @@ class AA2_World{
 
         AA2_Map *map = nullptr;
         AA2_Player *player = nullptr;
-        int player_spawn_x = 200;
-        int player_spawn_y = 200;
         AA2_Camera *camera = nullptr;
 
     public:

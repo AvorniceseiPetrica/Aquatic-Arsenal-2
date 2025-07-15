@@ -11,8 +11,9 @@ class AA2_Creature : public AA2_Entity{
 
     public:
 
-        AA2_Creature(SDL_Rect *p_data);
-        ~AA2_Creature() = 0;
+        AA2_Creature();
+        virtual ~AA2_Creature() = 0;
+        virtual void Init(SDL_Rect *p_data);
         virtual void Update() = 0;
         virtual void Render() = 0;
 };

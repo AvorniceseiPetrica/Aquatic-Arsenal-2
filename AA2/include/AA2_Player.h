@@ -10,15 +10,19 @@ class AA2_Player : public AA2_Creature{
         int speed = 10;
         int jump_strength = 10;
         int gravity = 1;
-        int width = 128;
-        int height = 128;
+        SDL_Rect player_rect = {
+            .x = 200,
+            .y = 200,
+            .w = 128,
+            .h = 128
+        };
         const char* texture_path = "Assets/Tiles/red.png";
 
         AA2_Map *game_map = nullptr;
 
     public:
 
-        AA2_Player(SDL_Rect *p_data, AA2_Map *p_game_map);
+        AA2_Player(AA2_Map *p_game_map);
         ~AA2_Player();
         void Init();
         void Update();

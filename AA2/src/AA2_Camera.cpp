@@ -36,7 +36,7 @@ void AA2_Camera::Update()
     if(position->x > MAP_WIDTH - WINDOW_WIDTH)
         position->x = MAP_WIDTH - WINDOW_WIDTH;
     
-    if(position->y < MAP_HEIGHT - WINDOW_HEIGHT)
+    if(position->y > MAP_HEIGHT - WINDOW_HEIGHT)
         position->y = MAP_HEIGHT - WINDOW_HEIGHT;
 }
 

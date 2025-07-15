@@ -1,7 +1,8 @@
 #include "AA2_Player.h"
+#include "AA2_GameContext.h"
 #include <iostream>
 
-AA2_Player::AA2_Player(SDL_Rect *p_data, AA2_Map *p_game_map) : AA2_Creature(p_data)
+AA2_Player::AA2_Player(AA2_Map *p_game_map) : AA2_Creature()
 {
     if(p_game_map == nullptr)
         SDL_Log("\n\tAA2_Player::AA2_Player()\t<< Provided NULL for (AA2_Map *p_game_map) >>\n\n");
@@ -17,8 +18,10 @@ AA2_Player::~AA2_Player()
 void AA2_Player::Init()
 {
     texture = AA2_TextureLoader::LoadTexture(texture_path);
-    data->w = width;
-    data->h = height;
+    data->x = player_rect.x;
+    data->y = player_rect.y;
+    data->w = player_rect.w;
+    data->h = player_rect.h;
 }
 
 void AA2_Player::Update()
@@ -37,9 +40,9 @@ void AA2_Player::Update()
     if (keystates[SDL_SCANCODE_D]) new_x += speed;
 
     collision_upper_left = CheckCollision(new_x, new_y);
-    collision_lower_left = CheckCollision(new_x, new_y + height);
-    collision_upper_right = CheckCollision(new_x + width, new_y);
-    collision_lower_right = CheckCollision(new_x + width, new_y + height);
+    collision_lower_left = CheckCollision(new_x, new_y + data->h);
+    collision_upper_right = CheckCollision(new_x + data->w, new_y);
+    collision_lower_right = CheckCollision(new_x + data->w, new_y + data->h);
 
     if(
         !collision_lower_left &&
@@ -55,9 +58,10 @@ void AA2_Player::Update()
 
 void AA2_Player::Render()
 {
+    SDL_Rect camera = AA2_GameContext::GetCamera()->GetViewPort();
     SDL_FRect dst = {
-        .x = (float)data->x,
-        .y = (float)data->y,
+        .x = (float)(data->x - camera.x),
+        .y = (float)(data->y - camera.y),
         .w = (float)data->w,
         .h = (float)data->h
     };
@@ -81,7 +85,6 @@ SDL_Rect* AA2_Player::GetRect()
 {
     if(data != nullptr)
         return data;
-    else
-        SDL_Log("RAAAAH");
+
     return nullptr;
 }

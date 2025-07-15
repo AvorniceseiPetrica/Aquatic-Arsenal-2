@@ -3,13 +3,8 @@
 
 AA2_World::AA2_World()
 {
-    SDL_Rect dst = {
-        .x = player_spawn_x,
-        .y = player_spawn_y,
-    };
-
     map = new AA2_Map();
-    player = new AA2_Player(&dst, map);
+    player = new AA2_Player(map);
 }
 
 AA2_World::~AA2_World()
