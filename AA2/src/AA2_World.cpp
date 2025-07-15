@@ -14,26 +14,21 @@ AA2_World::~AA2_World()
 
     if(player != nullptr)
         delete player;
-
-    if(camera != nullptr)
-        delete camera;
 }
 
 void AA2_World::Init()
 {
-    camera = AA2_GameContext::GetCamera();
     map->Init();
     map->LoadMap("Assets/Maps/Map.txt");
     map->PrintMapInfo();
     player->Init();
-    camera->SetTarget(player->GetRect());
+    AA2_GameContext::GetCamera()->SetTarget(player->GetRect());
 }
 
 void AA2_World::Update()
 {
     player->Update();
-    camera->Update();
-    camera->PrintInfo();
+    AA2_GameContext::GetCamera()->Update();
 }
 
 void AA2_World::Render()
