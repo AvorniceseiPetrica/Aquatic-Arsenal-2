@@ -56,21 +56,21 @@ void AA2_Game::Init(const char* title)
     }
 
     graphics_context->Init(window, renderer);
-    world = new AA2_World();
-    world->Init();
+    current_state = new AA2_GameState;
+    current_state->Init();
 }
 
 void AA2_Game::Update()
 {
     SDL_SetRenderDrawColor(renderer, 0xff, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
-    world->Update();
+    current_state->Update();
 }
 
 void AA2_Game::Render()
 {
     SDL_RenderClear(renderer);
 
-    world->Render();    
+    current_state->Render();    
     
     SDL_RenderPresent(renderer);
 }
@@ -86,10 +86,15 @@ void AA2_Game::HandleEvents()
 
     while(SDL_PollEvent(&e))
     {
-        if(e.type == SDL_EVENT_QUIT)
-        {
-            SDL_Log("User requested quitting...\n");
-            is_running = false;
-        }
+        current_state->HandleEvents(&e);
+    }
+}
+
+void AA2_Game::ChangeState(AA2_State *new_state)
+{
+    if(new_state != nullptr)
+    {    
+        current_state = new_state;
+        current_state->Init();
     }
 }

@@ -6,6 +6,8 @@
 #include "AA2_Map.h"
 #include "AA2_Player.h"
 #include "AA2_World.h"
+#include "AA2_State.h"
+#include "AA2_GameState.h"
 
 class AA2_Game{
 
@@ -17,6 +19,7 @@ class AA2_Game{
         AA2_World *world = nullptr;
 
         AA2_GraphicsContext *graphics_context;
+        AA2_State *current_state;
 
     public:
         
@@ -27,4 +30,5 @@ class AA2_Game{
         void Render();
         bool IsRunning();
         void HandleEvents();
+        void ChangeState(AA2_State *new_state);
 };
