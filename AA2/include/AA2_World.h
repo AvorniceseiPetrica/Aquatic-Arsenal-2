@@ -8,8 +8,8 @@ class AA2_World{
 
     private:
 
-        AA2_Map *map = nullptr;
-        AA2_Player *player = nullptr;
+        AA2_Map map;
+        AA2_Player player;
         SDL_Texture *background = nullptr;
 
     public:

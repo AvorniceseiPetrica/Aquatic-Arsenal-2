@@ -10,23 +10,23 @@ class AA2_Player : public AA2_Creature{
         int speed = 10;
         int jump_strength = 10;
         int gravity = 1;
-        SDL_Rect player_rect = {
+        int width = 128;
+        int height = 128;
+        SDL_Rect player_spawn = {
             .x = 200,
             .y = 200,
-            .w = 128,
-            .h = 128
+            .w = width,
+            .h = height
         };
         const char* texture_path = "Assets/Tiles/red.png";
 
-        AA2_Map *game_map = nullptr;
-
     public:
 
-        AA2_Player(AA2_Map *p_game_map);
+        AA2_Player();
         ~AA2_Player();
-        void Init();
-        void Update();
-        void Render();
-        bool CheckCollision(int x, int y);
+        void Init() override;
+        void Update(AA2_Map *p_map);
+        void Render() override;
+        bool CheckCollision(AA2_Map *game_map, int x, int y);
         SDL_Rect* GetRect();
 };

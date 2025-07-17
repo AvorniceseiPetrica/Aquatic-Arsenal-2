@@ -4,18 +4,17 @@
 
 AA2_Map::AA2_Map()
 {
-    tile_manager = new AA2_TileManager();
+
 }
 
 AA2_Map::~AA2_Map()
 {
-    if(tile_manager != nullptr)
-        delete tile_manager;
+    
 }
 
 void AA2_Map::Init()
 {
-    tile_manager->Init();
+    tile_manager.Init();
 }
 
 void AA2_Map::LoadMap(const char* map_path)
@@ -53,7 +52,7 @@ void AA2_Map::Render()
         {
             x = j * TILE_WIDTH - camera.x;
             y = i * TILE_HEIGHT - camera.y;
-            tile_manager->GetTile(tilemap[i][j])->Render(x, y);
+            tile_manager.GetTile(tilemap[i][j])->Render(x, y);
         }
 }
 
@@ -83,5 +82,5 @@ bool AA2_Map::IsTileSolid(int id)
     if(id >= TILE_COUNT)
         SDL_Log("\n\nAA2_Map::IsTileSolid()\t<< Invalid id for tile >>\n\n");
     
-    return tile_manager->GetTile(id)->IsSolid();
+    return tile_manager.GetTile(id)->IsSolid();
 }

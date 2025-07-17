@@ -2,12 +2,9 @@
 #include "AA2_GameContext.h"
 #include <iostream>
 
-AA2_Player::AA2_Player(AA2_Map *p_game_map) : AA2_Creature()
+AA2_Player::AA2_Player() : AA2_Creature()
 {
-    if(p_game_map == nullptr)
-        SDL_Log("\n\tAA2_Player::AA2_Player()\t<< Provided NULL for (AA2_Map *p_game_map) >>\n\n");
-    else
-        game_map = p_game_map;
+
 }
 
 AA2_Player::~AA2_Player()
@@ -18,17 +15,20 @@ AA2_Player::~AA2_Player()
 void AA2_Player::Init()
 {
     texture = AA2_TextureLoader::LoadTexture(texture_path);
-    data->x = player_rect.x;
-    data->y = player_rect.y;
-    data->w = player_rect.w;
-    data->h = player_rect.h;
+    data.x = player_spawn.x;
+    data.y = player_spawn.y;
+    data.w = player_spawn.w;
+    data.h = player_spawn.h;
 }
 
-void AA2_Player::Update()
+void AA2_Player::Update(AA2_Map *p_map)
 {
+    if(p_map == nullptr)
+        SDL_Log("\n\tAA2_Player::Update()\t<< Provided NULL for (AA2_Map *p_map) >>\n\n");
+
     const bool *keystates = SDL_GetKeyboardState(NULL);
-    float new_x = data->x;;
-    float new_y = data->y;
+    float new_x = data.x;;
+    float new_y = data.y;
     bool collision_upper_left;
     bool collision_upper_right;
     bool collision_lower_left;
@@ -39,10 +39,10 @@ void AA2_Player::Update()
     if (keystates[SDL_SCANCODE_A]) new_x -= speed;
     if (keystates[SDL_SCANCODE_D]) new_x += speed;
 
-    collision_upper_left = CheckCollision(new_x, new_y);
-    collision_lower_left = CheckCollision(new_x, new_y + data->h);
-    collision_upper_right = CheckCollision(new_x + data->w, new_y);
-    collision_lower_right = CheckCollision(new_x + data->w, new_y + data->h);
+    collision_upper_left = CheckCollision(p_map, new_x, new_y);
+    collision_lower_left = CheckCollision(p_map, new_x, new_y + data.h);
+    collision_upper_right = CheckCollision(p_map, new_x + data.w, new_y);
+    collision_lower_right = CheckCollision(p_map, new_x + data.w, new_y + data.h);
 
     if(
         !collision_lower_left &&
@@ -51,8 +51,8 @@ void AA2_Player::Update()
         !collision_upper_right
     )
     {
-        data->x = new_x;
-        data->y = new_y;
+        data.x = new_x;
+        data.y = new_y;
     }
 }
 
@@ -60,15 +60,15 @@ void AA2_Player::Render()
 {
     SDL_Rect camera = AA2_GameContext::GetCamera()->GetViewPort();
     SDL_FRect dst = {
-        .x = (float)(data->x - camera.x),
-        .y = (float)(data->y - camera.y),
-        .w = (float)data->w,
-        .h = (float)data->h
+        .x = (float)(data.x - camera.x),
+        .y = (float)(data.y - camera.y),
+        .w = (float)data.w,
+        .h = (float)data.h
     };
     SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), texture, nullptr, &dst);
 }
 
-bool AA2_Player::CheckCollision(int x, int y)
+bool AA2_Player::CheckCollision(AA2_Map *game_map, int x, int y)
 {
     int tile_x = x / TILE_WIDTH;
     int tile_y = y / TILE_HEIGHT;
@@ -83,8 +83,5 @@ bool AA2_Player::CheckCollision(int x, int y)
 
 SDL_Rect* AA2_Player::GetRect()
 {
-    if(data != nullptr)
-        return data;
-
-    return nullptr;
+    return &data;
 }

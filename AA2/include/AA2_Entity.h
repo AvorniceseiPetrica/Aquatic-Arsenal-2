@@ -8,13 +8,12 @@ class AA2_Entity{
 
     protected:
 
-        SDL_Rect *data = nullptr;
+        SDL_Rect data;
 
     public:
 
         AA2_Entity();
         virtual ~AA2_Entity() = 0;
-        virtual void Init(SDL_Rect *p_data);
-        virtual void Update() = 0;
+        virtual void Init() = 0;
         virtual void Render() = 0;
 };

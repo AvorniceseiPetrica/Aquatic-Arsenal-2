@@ -6,7 +6,7 @@ class AA2_Camera{
 
     private:
 
-        SDL_Point *position;
+        SDL_Point position;
         SDL_Rect *target;
 
     public:

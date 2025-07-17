@@ -7,7 +7,7 @@ class AA2_Map{
     private:
 
         int tilemap[TILEMAP_HEIGHT][TILEMAP_WIDTH];
-        AA2_TileManager *tile_manager = nullptr;
+        AA2_TileManager tile_manager;
 
     public:
 
