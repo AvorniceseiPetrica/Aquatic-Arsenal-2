@@ -10,7 +10,7 @@ void AA2_GameState::HandleEvents(SDL_Event *e)
 {
     if (e->type == SDL_EVENT_QUIT)
     {
-        SDL_Log("\nQUIT\n");
+        SDL_Log("User requested quitting...\n");
         exit(0);
     }
 }

@@ -1,6 +1,7 @@
 #include "AA2_Game.h"
 #include "AA2_Map.h"
 #include "AA2_Player.h"
+#include "AA2_MenuState.h"
 
 #include <iostream>
 
@@ -71,7 +72,7 @@ void AA2_Game::CleanSDL()
 
 void AA2_Game::Update()
 {
-    SDL_SetRenderDrawColor(renderer, 0xff, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
+    //SDL_SetRenderDrawColor(renderer, 0xff, 0xaa, 0xbb, SDL_ALPHA_OPAQUE);
     current_state->Update();
 }
 
@@ -95,7 +96,10 @@ void AA2_Game::HandleEvents()
 
     while(SDL_PollEvent(&e))
     {
-        current_state->HandleEvents(&e);
+        if(e.key.key == SDLK_ESCAPE)
+            ChangeState(new AA2_MenuState);
+        else
+            current_state->HandleEvents(&e);
     }
 }
 
