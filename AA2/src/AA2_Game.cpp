@@ -7,23 +7,28 @@
 AA2_Game::AA2_Game()
 {
     graphics_context = new AA2_GraphicsContext;
+    current_state = new AA2_GameState;
 }
 
 AA2_Game::~AA2_Game()
 {
     if(graphics_context != nullptr)
         delete graphics_context;
-
-    if(world != nullptr)
-        delete world;
-
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-    SDL_Log("Game cleaned...\n");
+    
+    if(current_state != nullptr)
+        delete current_state;
+    
+    CleanSDL();
 }
 
 void AA2_Game::Init(const char* title)
+{
+    InitSDL(title);
+    graphics_context->Init(window, renderer);
+    current_state->Init();
+}
+
+void AA2_Game::InitSDL(const char* title)
 {
     if(!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -54,10 +59,14 @@ void AA2_Game::Init(const char* title)
         else
             SDL_Log("Created renderer...\n");
     }
+}
 
-    graphics_context->Init(window, renderer);
-    current_state = new AA2_GameState;
-    current_state->Init();
+void AA2_Game::CleanSDL()
+{
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    SDL_Log("Game cleaned...\n");
 }
 
 void AA2_Game::Update()
@@ -92,8 +101,13 @@ void AA2_Game::HandleEvents()
 
 void AA2_Game::ChangeState(AA2_State *new_state)
 {
-    if(new_state != nullptr)
-    {    
+    if(new_state == nullptr)
+        SDL_Log("\n\tAA2_Game::ChangeState()\t<< Provided NULL for (AA2_State *new_state) >>\n\n");
+    else
+    {
+        if(current_state != nullptr)
+            delete current_state;
+
         current_state = new_state;
         current_state->Init();
     }

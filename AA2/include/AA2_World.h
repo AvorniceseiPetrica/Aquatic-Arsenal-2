@@ -10,6 +10,7 @@ class AA2_World{
 
         AA2_Map *map = nullptr;
         AA2_Player *player = nullptr;
+        SDL_Texture *background = nullptr;
 
     public:
 
