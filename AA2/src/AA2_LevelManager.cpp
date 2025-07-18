@@ -1,17 +1,17 @@
-#include "AA2_World.h"
+#include "AA2_LevelManager.h"
 #include "AA2_GameContext.h"
 
-AA2_World::AA2_World()
+AA2_LevelManager::AA2_LevelManager()
 {
     
 }
 
-AA2_World::~AA2_World()
+AA2_LevelManager::~AA2_LevelManager()
 {
     
 }
 
-void AA2_World::Init()
+void AA2_LevelManager::Init()
 {
     map.Init();
     map.LoadMap("Assets/Maps/Map.txt");
@@ -21,13 +21,13 @@ void AA2_World::Init()
     background = AA2_TextureLoader::LoadTexture("Assets/Backgrounds/background.png");
 }
 
-void AA2_World::Update()
+void AA2_LevelManager::Update()
 {
     player.Update(&map);
     AA2_GameContext::GetCamera()->Update();
 }
 
-void AA2_World::Render()
+void AA2_LevelManager::Render()
 {
     SDL_FRect dst = {
         .x = 0,

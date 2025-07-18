@@ -3,6 +3,8 @@
 #include "AA2_State.h"
 #include "AA2_Config.h"
 
+class AA2_Game;
+
 class AA2_MenuState : public AA2_State{
 
     private:
@@ -34,8 +36,11 @@ class AA2_MenuState : public AA2_State{
         bool start_game = false;
         bool quit_game = false;
 
+        AA2_Game *game_instance = nullptr;
+
     public:
 
+        AA2_MenuState(AA2_Game *p_game_instance);
         virtual void Init() override;
         virtual void HandleEvents(SDL_Event *e) override;
         virtual void Update() override;

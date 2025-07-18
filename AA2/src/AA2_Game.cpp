@@ -97,7 +97,7 @@ void AA2_Game::HandleEvents()
     while(SDL_PollEvent(&e))
     {
         if(e.key.key == SDLK_ESCAPE)
-            ChangeState(new AA2_MenuState);
+            ChangeState(new AA2_MenuState(this));
         else
             current_state->HandleEvents(&e);
     }

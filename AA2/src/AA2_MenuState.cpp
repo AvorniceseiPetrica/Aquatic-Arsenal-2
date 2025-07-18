@@ -1,7 +1,16 @@
 #include "AA2_MenuState.h"
 #include "AA2_GraphicsContext.h"
 #include "AA2_TextureLoader.h"
+#include "AA2_Game.h"
 #include <iostream>
+
+AA2_MenuState::AA2_MenuState(AA2_Game *p_game_instance)
+{
+    if(p_game_instance == nullptr)
+        SDL_Log("\n\tAA2_MenuState::AA2_MenuState()\t<< Provided NULL for (AA2_Game *p_game_instance) >>\n\n");
+    else
+        game_instance = p_game_instance;
+}
 
 void AA2_MenuState::Init()
 {
@@ -14,22 +23,29 @@ void AA2_MenuState::Init()
 
 void AA2_MenuState::HandleEvents(SDL_Event *e)
 {
-    if(e->type == SDL_EVENT_QUIT)
+    switch(e->type)
     {
-        SDL_Log("User requested quitting...\n");
-        exit(0);
-    }
-    else
-    {
-        if(e->key.key == SDLK_1)
-            start_game = true;
-        else
-            start_game = false;
+        case SDL_EVENT_QUIT: {
+            SDL_Log("User requested quitting...\n");
+            exit(0);
+        }
+        break;
 
-        if(e->key.key == SDLK_2)
-            quit_game = true;
-        else
-            quit_game = false;
+        case SDL_EVENT_KEY_DOWN: {
+            if(e->key.key == SDLK_1)
+                start_game = true;
+            else
+                start_game = false;
+
+            if(e->key.key == SDLK_2)
+                quit_game = true;
+            else
+                quit_game = false;
+
+            if(e->key.key == SDLK_RETURN)
+                game_instance->ChangeState(new AA2_GameState);
+        }
+        break;
     }
 }
 

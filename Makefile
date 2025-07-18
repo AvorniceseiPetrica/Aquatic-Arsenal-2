@@ -14,7 +14,7 @@ SOURCES=$(sources_path)main.cpp \
 		$(sources_path)AA2_Entity.cpp \
 		$(sources_path)AA2_Creature.cpp \
 		$(sources_path)AA2_Player.cpp \
-		$(sources_path)AA2_World.cpp \
+		$(sources_path)AA2_LevelManager.cpp \
 		$(sources_path)AA2_GraphicsContext.cpp \
 		$(sources_path)AA2_Camera.cpp \
 		$(sources_path)AA2_GameContext.cpp \

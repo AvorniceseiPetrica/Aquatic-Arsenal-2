@@ -1,13 +1,13 @@
 #pragma once
 
 #include "AA2_State.h"
-#include "AA2_World.h"
+#include "AA2_LevelManager.h"
 
 class AA2_GameState : public AA2_State{
 
     private:
 
-        AA2_World world;
+        AA2_LevelManager level_manager;
 
     public:
 

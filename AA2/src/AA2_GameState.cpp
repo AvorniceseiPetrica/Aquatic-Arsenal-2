@@ -3,7 +3,7 @@
 
 void AA2_GameState::Init()
 {
-    world.Init();
+    level_manager.Init();
 }
 
 void AA2_GameState::HandleEvents(SDL_Event *e)
@@ -17,10 +17,10 @@ void AA2_GameState::HandleEvents(SDL_Event *e)
 
 void AA2_GameState::Update()
 {
-    world.Update();
+    level_manager.Update();
 }
 
 void AA2_GameState::Render()
 {
-    world.Render();
+    level_manager.Render();
 }

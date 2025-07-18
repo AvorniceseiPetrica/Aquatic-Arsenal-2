@@ -4,7 +4,7 @@
 #include "AA2_Player.h"
 #include "AA2_Camera.h"
 
-class AA2_World{
+class AA2_LevelManager{
 
     private:
 
@@ -14,8 +14,8 @@ class AA2_World{
 
     public:
 
-        AA2_World();
-        ~AA2_World();
+        AA2_LevelManager();
+        ~AA2_LevelManager();
         void Init();
         void Update();
         void Render();
