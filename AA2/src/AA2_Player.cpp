@@ -14,11 +14,13 @@ AA2_Player::~AA2_Player()
 
 void AA2_Player::Init()
 {
+    velocity_x = 0;
+    velocity_y = 0;
     texture = AA2_TextureLoader::LoadTexture(texture_path);
     data.x = player_spawn.x;
     data.y = player_spawn.y;
-    data.w = player_spawn.w;
-    data.h = player_spawn.h;
+    data.w = width;
+    data.h = height;
 }
 
 void AA2_Player::Update(AA2_Map *p_map)
@@ -64,11 +66,18 @@ void AA2_Player::Update(AA2_Map *p_map)
     if(!collision_top && !collision_bottom)
         data.y = data.y + velocity_y;
     else
+    {
         if(collision_bottom)
         {
             on_ground = true;
             velocity_y = 0;
         }
+        
+        if(collision_top)
+        {
+            velocity_y = 0;
+        }
+    }
 }
 
 void AA2_Player::Render()
@@ -87,6 +96,7 @@ bool AA2_Player::CheckCollision(AA2_Map *game_map, int x, int y)
 {
     int tile_x = x / TILE_WIDTH;
     int tile_y = y / TILE_HEIGHT;
+    //SDL_Log("x = %d, tile_x = %x | y = %d, tile_y = %d\n", x, tile_x, y, tile_y);
     int tile_id = game_map->GetTileId(tile_y, tile_x);
 
     if(game_map->IsTileSolid(tile_id))
@@ -99,4 +109,10 @@ bool AA2_Player::CheckCollision(AA2_Map *game_map, int x, int y)
 SDL_Rect* AA2_Player::GetRect()
 {
     return &data;
+}
+
+void AA2_Player::ChangeSpawn(SDL_Point new_spawn)
+{
+    player_spawn.x = new_spawn.x;
+    player_spawn.y = new_spawn.y;
 }

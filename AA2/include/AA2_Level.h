@@ -10,13 +10,15 @@ class AA2_Level{
         SDL_Texture *background = nullptr;
         const char* map_path;
         const char* background_path;
+        SDL_Point player_spawn;
 
     public:
 
-        AA2_Level(const char *p_map_path, const char *p_background_path);
+        AA2_Level(const char *p_map_path, const char *p_background_path, SDL_Point p_player_spawn);
         ~AA2_Level();
         void Init();
         void Update();
         void Render();
         AA2_Map* GetMap();
+        SDL_Point GetPlayerSpawn();
 };

@@ -14,6 +14,5 @@ class AA2_Entity{
 
         AA2_Entity();
         virtual ~AA2_Entity() = 0;
-        virtual void Init() = 0;
         virtual void Render() = 0;
 };

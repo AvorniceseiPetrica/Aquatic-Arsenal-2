@@ -9,7 +9,7 @@ AA2_Map::AA2_Map()
 
 AA2_Map::~AA2_Map()
 {
-    
+
 }
 
 void AA2_Map::Init()
@@ -72,7 +72,7 @@ void AA2_Map::PrintMapInfo()
 int AA2_Map::GetTileId(int i, int j)
 {
     if(i >= TILEMAP_HEIGHT || j >= TILEMAP_WIDTH)
-        SDL_Log("\n\tAA2_Map::GetTileId()\t<< Invalid matrix index >>\n\n");
+        SDL_Log("\n\tAA2_Map::GetTileId()\t<< Invalid matrix index >>\ti = %d | j = %d\n\n", i, j);
     
     return tilemap[i][j];
 }

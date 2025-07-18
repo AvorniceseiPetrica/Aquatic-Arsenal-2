@@ -16,21 +16,17 @@ class AA2_Player : public AA2_Creature{
         bool moving_right = true;
         int width = 128;
         int height = 128;
-        SDL_Rect player_spawn = {
-            .x = 200,
-            .y = 500,
-            .w = width,
-            .h = height
-        };
+        SDL_Point player_spawn;
         const char* texture_path = "Assets/Tiles/red.png";
 
     public:
 
         AA2_Player();
         ~AA2_Player();
-        void Init() override;
+        void Init();
         void Update(AA2_Map *p_map);
         void Render() override;
         bool CheckCollision(AA2_Map *map, int x, int y);
         SDL_Rect* GetRect();
+        void ChangeSpawn(SDL_Point new_spawn);
 };
