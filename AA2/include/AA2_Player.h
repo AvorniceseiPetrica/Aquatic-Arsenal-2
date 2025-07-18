@@ -18,7 +18,7 @@ class AA2_Player : public AA2_Creature{
         int height = 128;
         SDL_Rect player_spawn = {
             .x = 200,
-            .y = 200,
+            .y = 500,
             .w = width,
             .h = height
         };

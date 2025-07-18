@@ -41,8 +41,8 @@ class AA2_MenuState : public AA2_State{
     public:
 
         AA2_MenuState(AA2_Game *p_game_instance);
-        virtual void Init() override;
-        virtual void HandleEvents(SDL_Event *e) override;
-        virtual void Update() override;
-        virtual void Render() override;
+        void Init() override;
+        void HandleEvents(SDL_Event *e) override;
+        void Update() override;
+        void Render() override;
 };
