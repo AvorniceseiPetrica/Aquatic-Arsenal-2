@@ -27,43 +27,48 @@ void AA2_Player::Update(AA2_Map *p_map)
         SDL_Log("\n\tAA2_Player::Update()\t<< Provided NULL for (AA2_Map *p_map) >>\n\n");
 
     const bool *keystates = SDL_GetKeyboardState(NULL);
-    float new_x = data.x;;
-    float new_y = data.y;
     bool collision_top, collision_bottom, collision_left, collision_right;
+    int new_x, new_y;
 
-    if (keystates[SDL_SCANCODE_A]) 
+    velocity_x = 0;
+
+    if (keystates[SDL_SCANCODE_A] && !keystates[SDL_SCANCODE_D]) 
     {
-        new_x -= speed;
+        velocity_x = -speed;
         moving_right = false;
     }
-    if (keystates[SDL_SCANCODE_D]) 
+    if (keystates[SDL_SCANCODE_D] && !keystates[SDL_SCANCODE_A]) 
     {
-        new_x += speed;
+        velocity_x = +speed;
         moving_right = true;
     }
 
-    collision_left = CheckCollision(p_map, new_x, new_y) || CheckCollision(p_map, new_x, new_y + data.h - 1);
-    collision_right = CheckCollision(p_map, new_x + data.w - 1, new_y) || CheckCollision(p_map, new_x + data.w - 1, new_y + data.h - 1);
+    new_x = data.x + velocity_x;
+    collision_left = CheckCollision(p_map, new_x, data.y) || CheckCollision(p_map, new_x, data.y + data.h - 1);
+    collision_right = CheckCollision(p_map, new_x + data.w - 1, data.y) || CheckCollision(p_map, new_x + data.w - 1, data.y + data.h - 1);
 
     if(!collision_left && !collision_right)
-        data.x = new_x;
+        data.x = data.x + velocity_x;
 
-    if(keystates[SDL_SCANCODE_W] && on_ground == true)
+    if(keystates[SDL_SCANCODE_SPACE] && on_ground == true)
     {
         on_ground = false;
-        new_y -= jump_strength;
+        velocity_y -= jump_strength;
     }
     
-    new_y += gravity;
-
+    velocity_y += gravity;
+    new_y = data.y + velocity_y;
     collision_top = CheckCollision(p_map, data.x, new_y) || CheckCollision(p_map, data.x + data.w - 1, new_y);
     collision_bottom = CheckCollision(p_map, data.x, new_y + data.h - 1) || CheckCollision(p_map, data.x + data.w - 1, new_y + data.h - 1);
 
     if(!collision_top && !collision_bottom)
-        data.y = new_y;
+        data.y = data.y + velocity_y;
     else
         if(collision_bottom)
+        {
             on_ground = true;
+            velocity_y = 0;
+        }
 }
 
 void AA2_Player::Render()
