@@ -3,14 +3,15 @@
 #include "AA2_Map.h"
 #include "AA2_Player.h"
 #include "AA2_Camera.h"
+#include "AA2_Level.h"
 
 class AA2_LevelManager{
 
     private:
 
-        AA2_Map map;
         AA2_Player player;
-        SDL_Texture *background = nullptr;
+        AA2_Level *levels[3];
+        AA2_Level *current_level = nullptr;
 
     public:
 
@@ -19,4 +20,5 @@ class AA2_LevelManager{
         void Init();
         void Update();
         void Render();
+        void ChangeLevel(int id);
 };
