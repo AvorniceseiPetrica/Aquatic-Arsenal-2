@@ -13,8 +13,8 @@ AA2_LevelManager::~AA2_LevelManager()
 
 void AA2_LevelManager::Init()
 {
-    levels[0] = new AA2_Level("Assets/Maps/Map.txt", "Assets/Backgrounds/background.png");
-    levels[1] = new AA2_Level("Assets/Maps/Map2.txt", "Assets/Backgrounds/background.png");
+    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png");
+    levels[1] = new AA2_Level("Assets/Maps/map1.txt", "Assets/Backgrounds/background.png");
     current_level = levels[0];
     current_level->Init();
     player.Init();

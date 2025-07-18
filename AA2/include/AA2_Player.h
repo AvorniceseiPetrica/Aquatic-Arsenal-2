@@ -8,8 +8,10 @@ class AA2_Player : public AA2_Creature{
     private:
 
         int speed = 10;
-        int jump_strength = 10;
-        int gravity = 1;
+        int jump_strength = 2 * 128;
+        int gravity = 10;
+        bool on_ground = true;
+        bool moving_right = true;
         int width = 128;
         int height = 128;
         SDL_Rect player_spawn = {

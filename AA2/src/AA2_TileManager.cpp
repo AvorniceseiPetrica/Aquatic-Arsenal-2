@@ -18,10 +18,10 @@ void AA2_TileManager::Init()
     LoadTileTexture(0, "Assets/Tiles/empty.png");
 
     tiles[1] = new AA2_Tile(1, true);
-    LoadTileTexture(1, "Assets/Tiles/dirt.png");
+    LoadTileTexture(1, "Assets/Tiles/rock.png");
     
     tiles[2] = new AA2_Tile(2, true);
-    LoadTileTexture(2, "Assets/Tiles/grass.png");
+    LoadTileTexture(2, "Assets/Tiles/grassy_rock.png");
 }
 
 void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)
