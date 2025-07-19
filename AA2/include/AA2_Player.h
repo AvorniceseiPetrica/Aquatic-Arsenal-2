@@ -23,9 +23,8 @@ class AA2_Player : public AA2_Creature{
         ~AA2_Player();
         void Init();
         void Update() override;
-        void Update(AA2_Map *p_map);
         void Render() override;
-        bool CheckCollision(AA2_Map *map, int x, int y);
+        bool CheckCollision(int x, int y);
         SDL_Rect* GetRect();
         void ChangeSpawn(SDL_Point new_spawn);
 };

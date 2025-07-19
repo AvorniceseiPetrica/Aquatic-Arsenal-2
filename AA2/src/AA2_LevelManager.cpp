@@ -9,8 +9,8 @@ AA2_LevelManager::AA2_LevelManager()
 
 AA2_LevelManager::~AA2_LevelManager()
 {
-    delete levels[0];
-    delete levels[1];
+    for(int i = 0; i < LEVEL_COUNT; i++)
+        delete levels[i];
 }
 
 void AA2_LevelManager::Init()
@@ -29,7 +29,7 @@ void AA2_LevelManager::Init()
 
 void AA2_LevelManager::Update()
 {
-    player.Update(current_level->GetMap());
+    player.Update();
     AA2_RefLinks::GetCamera()->Update();
     // if(player.GetRect()->x > 500)
     //     ChangeLevel(1);

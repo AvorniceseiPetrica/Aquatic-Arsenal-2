@@ -18,6 +18,8 @@ void AA2_Camera::SetTarget(SDL_Rect *p_target)
         SDL_Log("\n\tAA2_Camera::SetTarget()\t<< Provided NULL for (SDL_FRect *p_target)\n\n");
     else
         target = p_target;
+
+    SDL_Log("Set camera...\n");
 }
 
 void AA2_Camera::Update()
@@ -36,8 +38,6 @@ void AA2_Camera::Update()
     
     if(position.y > MAP_HEIGHT - WINDOW_HEIGHT)
         position.y = MAP_HEIGHT - WINDOW_HEIGHT;
-
-    SDL_Log("Set camera...\n");
 }
 
 void AA2_Camera::PrintInfo()

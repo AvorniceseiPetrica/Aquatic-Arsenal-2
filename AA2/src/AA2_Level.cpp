@@ -28,6 +28,7 @@ AA2_Level::~AA2_Level()
 void AA2_Level::Init()
 {
     map.Init();
+    AA2_RefLinks::SetMap(&map);
     map.LoadMap(map_path);
     background = AA2_TextureLoader::LoadTexture(background_path);
 }

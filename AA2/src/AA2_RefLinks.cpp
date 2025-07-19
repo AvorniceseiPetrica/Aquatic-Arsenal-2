@@ -3,6 +3,7 @@
 SDL_Window *AA2_RefLinks::window = nullptr;
 SDL_Renderer *AA2_RefLinks::renderer = nullptr;
 AA2_Camera *AA2_RefLinks::camera = new AA2_Camera;
+AA2_Map *AA2_RefLinks::map = nullptr;
 
 void AA2_RefLinks::Init_Graphics(SDL_Window *p_window, SDL_Renderer *p_renderer)
 {
@@ -24,6 +25,14 @@ void AA2_RefLinks::SetCameraTarget(SDL_Rect *p_target)
     camera->SetTarget(p_target);
 }
 
+void AA2_RefLinks::SetMap(AA2_Map *p_map)
+{
+    if(p_map == nullptr)
+        SDL_Log("\n\tAA2_RefLinks::SetMap()\t<<Provided NULL for (AA2_Map *p_map) >>\n\n");
+    else
+        map = p_map;
+}
+
 SDL_Renderer* AA2_RefLinks::GetRenderer()
 {
     return renderer;
@@ -32,4 +41,9 @@ SDL_Renderer* AA2_RefLinks::GetRenderer()
 AA2_Camera* AA2_RefLinks::GetCamera()
 {
     return camera;
+}
+
+AA2_Map* AA2_RefLinks::GetMap()
+{
+    return map;
 }
