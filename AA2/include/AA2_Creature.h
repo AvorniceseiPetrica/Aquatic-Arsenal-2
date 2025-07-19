@@ -1,16 +1,16 @@
 #pragma once
 
-#include "AA2_Entity.h"
+#include "AA2_Drawable_Entity.h"
 #include "AA2_TextureLoader.h"
 
-class AA2_Creature : public AA2_Entity{
+class AA2_Creature : public AA2_Drawable_Entity{
 
     protected:
 
-        SDL_Texture *texture = nullptr;
+        int hitpoints;
 
     public:
 
         AA2_Creature();
-        virtual ~AA2_Creature() = 0;
+        ~AA2_Creature();
 };

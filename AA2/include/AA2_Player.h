@@ -14,8 +14,6 @@ class AA2_Player : public AA2_Creature{
         int gravity = 1;
         bool on_ground = true;
         bool moving_right = true;
-        int width = 128;
-        int height = 128;
         SDL_Point player_spawn;
         const char* texture_path = "Assets/Tiles/red.png";
 
@@ -24,6 +22,7 @@ class AA2_Player : public AA2_Creature{
         AA2_Player();
         ~AA2_Player();
         void Init();
+        void Update() override;
         void Update(AA2_Map *p_map);
         void Render() override;
         bool CheckCollision(AA2_Map *map, int x, int y);

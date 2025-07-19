@@ -12,7 +12,7 @@ class AA2_LevelManager{
         AA2_Player player;
         AA2_Level *levels[3];
         AA2_Level *current_level = nullptr;
-
+        
     public:
 
         AA2_LevelManager();

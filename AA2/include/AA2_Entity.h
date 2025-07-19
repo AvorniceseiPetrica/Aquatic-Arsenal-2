@@ -13,6 +13,7 @@ class AA2_Entity{
     public:
 
         AA2_Entity();
-        virtual ~AA2_Entity() = 0;
+        ~AA2_Entity();
+        virtual void Update() = 0;
         virtual void Render() = 0;
 };

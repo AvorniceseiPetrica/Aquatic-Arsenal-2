@@ -19,8 +19,8 @@ void AA2_Player::Init()
     texture = AA2_TextureLoader::LoadTexture(texture_path);
     data.x = player_spawn.x;
     data.y = player_spawn.y;
-    data.w = width;
-    data.h = height;
+    data.w = 128;
+    data.h = 128;
 }
 
 void AA2_Player::Update(AA2_Map *p_map)
@@ -115,4 +115,9 @@ void AA2_Player::ChangeSpawn(SDL_Point new_spawn)
 {
     player_spawn.x = new_spawn.x;
     player_spawn.y = new_spawn.y;
+}
+
+void AA2_Player::Update()
+{
+    
 }
