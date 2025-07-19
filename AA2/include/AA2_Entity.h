@@ -2,8 +2,6 @@
 
 #include <SDL3/SDL.h>
 
-#include "AA2_GraphicsContext.h"
-
 class AA2_Entity{
 
     protected:

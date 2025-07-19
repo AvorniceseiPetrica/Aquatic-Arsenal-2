@@ -36,6 +36,8 @@ void AA2_Camera::Update()
     
     if(position.y > MAP_HEIGHT - WINDOW_HEIGHT)
         position.y = MAP_HEIGHT - WINDOW_HEIGHT;
+
+    SDL_Log("Set camera...\n");
 }
 
 void AA2_Camera::PrintInfo()

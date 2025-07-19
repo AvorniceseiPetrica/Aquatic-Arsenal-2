@@ -2,12 +2,8 @@
 
 #include <SDL3/SDL.h>
 
-#include "AA2_GraphicsContext.h"
-#include "AA2_Map.h"
-#include "AA2_Player.h"
-#include "AA2_LevelManager.h"
 #include "AA2_State.h"
-#include "AA2_GameState.h"
+#include "AA2_RefLinks.h"
 
 class AA2_Game{
 
@@ -17,7 +13,7 @@ class AA2_Game{
         SDL_Renderer *renderer = nullptr;
         bool is_running = false;
 
-        AA2_GraphicsContext *graphics_context;
+        AA2_RefLinks reflinks;
         AA2_State *current_state;
 
     public:

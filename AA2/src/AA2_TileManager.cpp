@@ -1,5 +1,7 @@
 #include "AA2_TileManager.h"
 
+#include "AA2_TextureLoader.h"
+
 AA2_TileManager::AA2_TileManager()
 {
     for(int i = 0; i < TILE_COUNT; i++)
@@ -22,6 +24,8 @@ void AA2_TileManager::Init()
     
     tiles[2] = new AA2_Tile(2, true);
     LoadTileTexture(2, "Assets/Tiles/grassy_rock.png");
+
+    SDL_Log("Loaded tiles...\n");
 }
 
 void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)

@@ -1,5 +1,7 @@
 #include "AA2_Player.h"
-#include "AA2_GameContext.h"
+
+#include "AA2_RefLinks.h"
+#include "AA2_TextureLoader.h"
 #include <iostream>
 
 AA2_Player::AA2_Player() : AA2_Creature()
@@ -21,6 +23,8 @@ void AA2_Player::Init()
     data.y = player_spawn.y;
     data.w = 128;
     data.h = 128;
+
+    SDL_Log("Initialized player...\n");
 }
 
 void AA2_Player::Update(AA2_Map *p_map)
@@ -82,14 +86,14 @@ void AA2_Player::Update(AA2_Map *p_map)
 
 void AA2_Player::Render()
 {
-    SDL_Rect camera = AA2_GameContext::GetCamera()->GetViewPort();
+    SDL_Rect camera = AA2_RefLinks::GetCamera()->GetViewPort();
     SDL_FRect dst = {
         .x = (float)(data.x - camera.x),
         .y = (float)(data.y - camera.y),
         .w = (float)data.w,
         .h = (float)data.h
     };
-    SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), texture, nullptr, &dst);
+    SDL_RenderTexture(AA2_RefLinks::GetRenderer(), texture, nullptr, &dst);
 }
 
 bool AA2_Player::CheckCollision(AA2_Map *game_map, int x, int y)

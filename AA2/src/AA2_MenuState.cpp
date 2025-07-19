@@ -1,5 +1,6 @@
 #include "AA2_MenuState.h"
-#include "AA2_GraphicsContext.h"
+
+#include "AA2_GameState.h"
 #include "AA2_TextureLoader.h"
 #include "AA2_Game.h"
 #include <iostream>
@@ -56,15 +57,15 @@ void AA2_MenuState::Update()
 
 void AA2_MenuState::Render()
 {
-    SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), background_txt, nullptr, &background_rect);
+    SDL_RenderTexture(AA2_RefLinks::GetRenderer(), background_txt, nullptr, &background_rect);
     
     if(start_game)
-        SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), start_game_pressed_txt, nullptr, &start_game_rect);
+        SDL_RenderTexture(AA2_RefLinks::GetRenderer(), start_game_pressed_txt, nullptr, &start_game_rect);
     else
-        SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), start_game_unpressed_txt, nullptr, &start_game_rect);
+        SDL_RenderTexture(AA2_RefLinks::GetRenderer(), start_game_unpressed_txt, nullptr, &start_game_rect);
     
     if(quit_game)
-        SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), quit_game_pressed_txt, nullptr, &quit_game_rect);
+        SDL_RenderTexture(AA2_RefLinks::GetRenderer(), quit_game_pressed_txt, nullptr, &quit_game_rect);
     else
-        SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), quit_game_unpressed_txt, nullptr, &quit_game_rect);
+        SDL_RenderTexture(AA2_RefLinks::GetRenderer(), quit_game_unpressed_txt, nullptr, &quit_game_rect);
 }

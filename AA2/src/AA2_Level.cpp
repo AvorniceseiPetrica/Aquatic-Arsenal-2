@@ -1,5 +1,8 @@
 #include "AA2_Level.h"
 
+#include "AA2_TextureLoader.h"
+#include "AA2_RefLinks.h"
+
 AA2_Level::AA2_Level(const char *p_map_path, const char *p_background_path, SDL_Point p_player_spawn)
 {
     if(p_map_path == nullptr)
@@ -42,7 +45,7 @@ void AA2_Level::Render()
         .w = 1920,
         .h = 1080
     };
-    SDL_RenderTexture(AA2_GraphicsContext::GetRenderer(), background, nullptr, &dst);
+    SDL_RenderTexture(AA2_RefLinks::GetRenderer(), background, nullptr, &dst);
     map.Render();
 }
 

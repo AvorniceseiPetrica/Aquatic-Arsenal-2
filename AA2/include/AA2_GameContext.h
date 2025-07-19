@@ -2,14 +2,14 @@
 
 #include "AA2_Camera.h"
 
-class AA2_GameContext{
+// class AA2_GameContext{
 
-    private:
+//     private:
 
-        static AA2_Camera *camera;
+//         static AA2_Camera *camera;
 
-    public:
+//     public:
 
-        static void Init(SDL_Rect *p_target);
-        static AA2_Camera* GetCamera();
-};
+//         static void Init(SDL_Rect *p_target);
+//         static AA2_Camera* GetCamera();
+// };

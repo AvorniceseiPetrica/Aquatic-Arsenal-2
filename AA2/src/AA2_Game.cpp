@@ -1,21 +1,17 @@
 #include "AA2_Game.h"
-#include "AA2_Map.h"
-#include "AA2_Player.h"
+
+#include "AA2_GameState.h"
 #include "AA2_MenuState.h"
 
 #include <iostream>
 
 AA2_Game::AA2_Game()
 {
-    graphics_context = new AA2_GraphicsContext;
     current_state = new AA2_GameState;
 }
 
 AA2_Game::~AA2_Game()
-{
-    if(graphics_context != nullptr)
-        delete graphics_context;
-    
+{  
     if(current_state != nullptr)
         delete current_state;
     
@@ -25,7 +21,7 @@ AA2_Game::~AA2_Game()
 void AA2_Game::Init(const char* title)
 {
     InitSDL(title);
-    graphics_context->Init(window, renderer);
+    reflinks.Init_Graphics(window, renderer);
     current_state->Init();
 }
 

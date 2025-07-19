@@ -1,8 +1,6 @@
 #pragma once
 
-#include "AA2_Map.h"
 #include "AA2_Player.h"
-#include "AA2_Camera.h"
 #include "AA2_Level.h"
 
 class AA2_LevelManager{

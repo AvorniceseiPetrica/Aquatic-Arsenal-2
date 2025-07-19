@@ -3,7 +3,7 @@
 #include <SDL3_image/SDL_image.h>
 
 #include "AA2_Tile.h"
-#include "AA2_TextureLoader.h"
+#include "AA2_Config.h"
 
 class AA2_TileManager{
 

@@ -1,6 +1,7 @@
 #include "AA2_Map.h"
-#include "AA2_GameContext.h"
+
 #include <fstream>
+#include "AA2_RefLinks.h"
 
 AA2_Map::AA2_Map()
 {
@@ -15,6 +16,8 @@ AA2_Map::~AA2_Map()
 void AA2_Map::Init()
 {
     tile_manager.Init();
+
+    SDL_Log("Initialized map...\n");
 }
 
 void AA2_Map::LoadMap(const char* map_path)
@@ -40,12 +43,14 @@ void AA2_Map::LoadMap(const char* map_path)
 
         f.close();
     }
+
+    SDL_Log("Loaded map...\n");
 }
 
 void AA2_Map::Render()
 {
     int x, y;
-    SDL_Rect camera = AA2_GameContext::GetCamera()->GetViewPort();
+    SDL_Rect camera = AA2_RefLinks::GetCamera()->GetViewPort();
 
     for(int i = 0; i < TILEMAP_HEIGHT; i++)
         for(int j = 0; j < TILEMAP_WIDTH; j++)
