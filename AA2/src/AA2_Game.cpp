@@ -2,12 +2,14 @@
 
 #include "AA2_GameState.h"
 #include "AA2_MenuState.h"
+#include "AA2_RefLinks.h"
 
 #include <iostream>
 
 AA2_Game::AA2_Game()
 {
     current_state = new AA2_GameState;
+    AA2_RefLinks::SetGame(this);
 }
 
 AA2_Game::~AA2_Game()
@@ -93,7 +95,7 @@ void AA2_Game::HandleEvents()
     while(SDL_PollEvent(&e))
     {
         if(e.key.key == SDLK_ESCAPE)
-            ChangeState(new AA2_MenuState(this));
+            ChangeState(new AA2_MenuState());
         else
             current_state->HandleEvents(&e);
     }

@@ -3,14 +3,12 @@
 #include "AA2_GameState.h"
 #include "AA2_TextureLoader.h"
 #include "AA2_Game.h"
+#include "AA2_RefLinks.h"
 #include <iostream>
 
-AA2_MenuState::AA2_MenuState(AA2_Game *p_game_instance)
+AA2_MenuState::AA2_MenuState()
 {
-    if(p_game_instance == nullptr)
-        SDL_Log("\n\tAA2_MenuState::AA2_MenuState()\t<< Provided NULL for (AA2_Game *p_game_instance) >>\n\n");
-    else
-        game_instance = p_game_instance;
+
 }
 
 void AA2_MenuState::Init()
@@ -44,7 +42,7 @@ void AA2_MenuState::HandleEvents(SDL_Event *e)
                 quit_game = false;
 
             if(e->key.key == SDLK_RETURN)
-                game_instance->ChangeState(new AA2_GameState);
+                AA2_RefLinks::GetGame()->ChangeState(new AA2_GameState);
         }
         break;
     }
