@@ -15,7 +15,7 @@ AA2_LevelManager::~AA2_LevelManager()
 
 void AA2_LevelManager::Init()
 {
-    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png", {.x = 200, .y = 500});
+    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png", {.x = 400, .y = 500});
     levels[1] = new AA2_Level("Assets/Maps/map1.txt", "Assets/Backgrounds/background.png", {.x = 0, .y = 200});
 
     SDL_Log("Loaded levels...\n");
@@ -31,8 +31,8 @@ void AA2_LevelManager::Update()
 {
     player.Update();
     AA2_RefLinks::GetCamera()->Update();
-    // if(player.GetRect()->x > 500)
-    //     ChangeLevel(1);
+    if(player.GetRect()->x > MAP_WIDTH - TILE_WIDTH * 2)
+        ChangeLevel(1);
 }
 
 void AA2_LevelManager::Render()

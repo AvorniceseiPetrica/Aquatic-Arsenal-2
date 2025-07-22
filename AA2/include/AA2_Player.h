@@ -10,7 +10,7 @@ class AA2_Player : public AA2_Creature{
         int velocity_x;
         int velocity_y;
         int speed = 10;
-        int jump_strength = 25;
+        int jump_strength = 30;
         int gravity = 1;
         bool on_ground = true;
         bool moving_right = true;
