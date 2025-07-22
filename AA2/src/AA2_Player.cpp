@@ -6,7 +6,7 @@
 
 AA2_Player::AA2_Player() : AA2_Creature()
 {
-
+    
 }
 
 AA2_Player::~AA2_Player()
@@ -23,6 +23,13 @@ void AA2_Player::Init()
     data.y = player_spawn.y;
     data.w = 128;
     data.h = 128;
+
+    frames[0] = AA2_TextureLoader::LoadTexture("Assets/player1.png");
+    frames[1] = AA2_TextureLoader::LoadTexture("Assets/player2.png");
+    frames[2] = AA2_TextureLoader::LoadTexture("Assets/player3.png");
+    frames[3] = AA2_TextureLoader::LoadTexture("Assets/player4.png");
+
+    current_frame = 0;
 
     SDL_Log("Initialized player...\n");
 }
@@ -79,6 +86,10 @@ void AA2_Player::Update()
             velocity_y = 0;
         }
     }
+
+    current_frame++;
+    if(current_frame / 6 >= 4)
+        current_frame = 0;
 }
 
 void AA2_Player::Render()
@@ -90,7 +101,7 @@ void AA2_Player::Render()
         .w = (float)data.w,
         .h = (float)data.h
     };
-    SDL_RenderTexture(AA2_RefLinks::GetRenderer(), texture, nullptr, &dst);
+    SDL_RenderTexture(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst);
 }
 
 bool AA2_Player::CheckCollision(int x, int y)

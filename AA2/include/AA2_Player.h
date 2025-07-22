@@ -16,6 +16,9 @@ class AA2_Player : public AA2_Creature{
         bool moving_right = true;
         SDL_Point player_spawn;
         const char* texture_path = "Assets/Tiles/red.png";
+        SDL_Texture *frames[4];
+        int current_frame;
+        int time_since_last_frame;
 
     public:
 
