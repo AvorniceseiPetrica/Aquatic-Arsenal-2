@@ -101,7 +101,19 @@ void AA2_Player::Render()
         .w = (float)data.w,
         .h = (float)data.h
     };
-    SDL_RenderTexture(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst);
+
+    if(velocity_x == 0)
+    {
+        if(moving_right)
+            SDL_RenderTexture(AA2_RefLinks::GetRenderer(), frames[1], nullptr, &dst);
+        else
+            SDL_RenderTextureRotated(AA2_RefLinks::GetRenderer(), frames[1], nullptr, &dst, 0, nullptr, SDL_FLIP_HORIZONTAL);
+    }
+    else 
+        if(moving_right)
+            SDL_RenderTexture(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst);
+        else
+            SDL_RenderTextureRotated(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst, 0, nullptr, SDL_FLIP_HORIZONTAL);
 }
 
 bool AA2_Player::CheckCollision(int x, int y)
