@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AA2_Map.h"
+#include "AA2_Prop.h"
 
 class AA2_Level{
 
@@ -16,6 +17,7 @@ class AA2_Level{
         float background_width, background_height;
         float midground_width, midground_height;
         const float parralax_strength = 0.1;
+        AA2_Prop *props[6];
 
     public:
 

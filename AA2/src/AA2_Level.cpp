@@ -31,6 +31,23 @@ AA2_Level::~AA2_Level()
 
 void AA2_Level::Init()
 {
+    const char *arch = "Assets/Props/arch.png";
+    const char *column1 = "Assets/Props/column1.png";
+    const char *column2 = "Assets/Props/column2.png";
+    const char *coral1 = "Assets/Props/coral1.png";
+    const char *coral2 = "Assets/Props/coral2.png";
+    const char *coral3 = "Assets/Props/coral3.png";
+
+    props[0] = new AA2_Prop(arch);
+    props[1] = new AA2_Prop(column1);
+    props[2] = new AA2_Prop(column2);
+    props[3] = new AA2_Prop(coral1);
+    props[4] = new AA2_Prop(coral2);
+    props[5] = new AA2_Prop(coral3);
+
+    
+    props[0]->Init(2050, 650);
+
     map.Init();
     AA2_RefLinks::SetMap(&map);
     map.LoadMap(map_path);
@@ -42,7 +59,7 @@ void AA2_Level::Init()
 
 void AA2_Level::Update()
 {
-
+    
 }
 
 void AA2_Level::Render()
@@ -63,8 +80,11 @@ void AA2_Level::Render()
 
     SDL_RenderTexture(AA2_RefLinks::GetRenderer(), background, nullptr, &background_rect);
     SDL_RenderTexture(AA2_RefLinks::GetRenderer(), midground, nullptr, &midground_rect);
+    for(auto i : props)
+        i->Render();
     map.Render();
 }
+
 
 AA2_Map* AA2_Level::GetMap()
 {
