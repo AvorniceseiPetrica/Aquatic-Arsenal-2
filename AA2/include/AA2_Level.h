@@ -8,15 +8,18 @@ class AA2_Level{
 
         AA2_Map map;
         SDL_Texture *background = nullptr;
+        SDL_Texture *midground = nullptr;
         const char* map_path;
         const char* background_path;
+        const char* midground_path;
         SDL_Point player_spawn;
         float background_width, background_height;
+        float midground_width, midground_height;
         const float parralax_strength = 0.1;
 
     public:
 
-        AA2_Level(const char *p_map_path, const char *p_background_path, SDL_Point p_player_spawn);
+        AA2_Level(const char *p_map_path, const char *p_background_path, const char *p_midground_path, SDL_Point p_player_spawn);
         ~AA2_Level();
         void Init();
         void Update();
