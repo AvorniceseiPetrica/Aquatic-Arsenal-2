@@ -15,15 +15,13 @@ AA2_LevelManager::~AA2_LevelManager()
 
 void AA2_LevelManager::Init()
 {
-    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png", {.x = 400, .y = 500});
-    levels[1] = new AA2_Level("Assets/Maps/map1.txt", "Assets/Backgrounds/background.png", {.x = 0, .y = 200});
+    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png", {.x = 200, .y = 800});
+    levels[1] = new AA2_Level("Assets/Maps/map1.txt", "Assets/Backgrounds/background.png", {.x = 200, .y = 800});
 
     SDL_Log("Loaded levels...\n");
 
-    current_level = levels[0];
-    current_level->Init();
-    player.ChangeSpawn(current_level->GetPlayerSpawn());
-    player.Init();
+    current_level_id = 0;
+    ChangeLevel(current_level_id);
     AA2_RefLinks::GetCamera()->SetTarget(player.GetRect());
 }
 
@@ -31,8 +29,8 @@ void AA2_LevelManager::Update()
 {
     player.Update();
     AA2_RefLinks::GetCamera()->Update();
-    if(player.GetRect()->x > MAP_WIDTH - TILE_WIDTH * 2)
-        ChangeLevel(1);
+    if(player.GetRect()->x > MAP_WIDTH - TILE_WIDTH)
+        ChangeLevel(++current_level_id);
 }
 
 void AA2_LevelManager::Render()
@@ -43,8 +41,13 @@ void AA2_LevelManager::Render()
 
 void AA2_LevelManager::ChangeLevel(int id)
 {
-    current_level = levels[id];
-    current_level->Init();
-    player.ChangeSpawn(current_level->GetPlayerSpawn());
-    player.Init();
+    if(id >= LEVEL_COUNT)
+        SDL_Log("\n\tAA2_Level_Manager::ChangeLevel()\t<< Invalid level id >>");
+    else
+    {
+        current_level = levels[id];
+        current_level->Init();
+        player.ChangeSpawn(current_level->GetPlayerSpawn());
+        player.Init();
+    }
 }

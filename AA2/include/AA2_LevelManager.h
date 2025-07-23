@@ -11,6 +11,7 @@ class AA2_LevelManager{
         AA2_Player player;
         AA2_Level *levels[LEVEL_COUNT];
         AA2_Level *current_level = nullptr;
+        int current_level_id;
         
     public:
 

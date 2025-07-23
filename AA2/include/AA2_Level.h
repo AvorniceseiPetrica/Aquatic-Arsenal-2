@@ -11,6 +11,8 @@ class AA2_Level{
         const char* map_path;
         const char* background_path;
         SDL_Point player_spawn;
+        float background_width, background_height;
+        const float parralax_strength = 0.1;
 
     public:
 

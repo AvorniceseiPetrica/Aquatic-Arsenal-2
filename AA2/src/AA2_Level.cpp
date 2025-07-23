@@ -31,6 +31,7 @@ void AA2_Level::Init()
     AA2_RefLinks::SetMap(&map);
     map.LoadMap(map_path);
     background = AA2_TextureLoader::LoadTexture(background_path);
+    SDL_GetTextureSize(background, &background_width, &background_height);
 }
 
 void AA2_Level::Update()
@@ -41,10 +42,10 @@ void AA2_Level::Update()
 void AA2_Level::Render()
 {
     SDL_FRect dst = {
-        .x = 0,
+        .x = -(float)AA2_RefLinks::GetCamera()->GetViewPort().x * parralax_strength,
         .y = 0,
-        .w = 1920,
-        .h = 1080
+        .w = background_width,
+        .h = background_height
     };
     SDL_RenderTexture(AA2_RefLinks::GetRenderer(), background, nullptr, &dst);
     map.Render();

@@ -21,8 +21,8 @@ void AA2_Player::Init()
     texture = AA2_TextureLoader::LoadTexture(texture_path);
     data.x = player_spawn.x;
     data.y = player_spawn.y;
-    data.w = 128;
-    data.h = 128;
+    data.w = 150;
+    data.h = 150;
 
     frames[0] = AA2_TextureLoader::LoadTexture("Assets/player1.png");
     frames[1] = AA2_TextureLoader::LoadTexture("Assets/player2.png");
@@ -55,7 +55,7 @@ void AA2_Player::Update()
 
     new_x = data.x + velocity_x;
     collision_left = CheckCollision(new_x, data.y) || CheckCollision(new_x, data.y + data.h - 1);
-    collision_right = CheckCollision(new_x + data.w - 1, data.y) || CheckCollision(new_x + data.w - 1, data.y + data.h - 1);
+    collision_right = CheckCollision(new_x + data.w - 1 - 20, data.y) || CheckCollision(new_x + data.w - 1, data.y + data.h - 1);
 
     if(!collision_left && !collision_right)
         data.x = data.x + velocity_x;
@@ -85,6 +85,11 @@ void AA2_Player::Update()
         {
             velocity_y = 0;
         }
+    }
+
+    if (!collision_bottom && velocity_y > 0)
+    {
+        on_ground = false;
     }
 
     current_frame++;
