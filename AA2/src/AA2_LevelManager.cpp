@@ -15,7 +15,7 @@ AA2_LevelManager::~AA2_LevelManager()
 
 void AA2_LevelManager::Init()
 {
-    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png", {.x = 200, .y = 800});
+    levels[0] = new AA2_Level("Assets/Maps/map0.txt", "Assets/Backgrounds/background.png", {.x = 200, .y = 1200});
     levels[1] = new AA2_Level("Assets/Maps/map1.txt", "Assets/Backgrounds/background.png", {.x = 200, .y = 800});
 
     SDL_Log("Loaded levels...\n");

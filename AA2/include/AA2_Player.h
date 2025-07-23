@@ -18,7 +18,8 @@ class AA2_Player : public AA2_Creature{
         const char* texture_path = "Assets/Tiles/red.png";
         SDL_Texture *frames[4];
         int current_frame;
-        int time_since_last_frame;
+        const int offset_x = 30;
+        const int offset_y = 20;
 
     public:
 

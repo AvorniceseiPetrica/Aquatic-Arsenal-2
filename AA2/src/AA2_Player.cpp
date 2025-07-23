@@ -54,8 +54,8 @@ void AA2_Player::Update()
     }
 
     new_x = data.x + velocity_x;
-    collision_left = CheckCollision(new_x, data.y) || CheckCollision(new_x, data.y + data.h - 1);
-    collision_right = CheckCollision(new_x + data.w - 1 - 20, data.y) || CheckCollision(new_x + data.w - 1, data.y + data.h - 1);
+    collision_left = CheckCollision(new_x + offset_x, data.y) || CheckCollision(new_x + offset_x, data.y + data.h - offset_y - 1);
+    collision_right = CheckCollision(new_x + data.w - offset_x - 1, data.y) || CheckCollision(new_x + data.w - offset_x - 1, data.y + data.h - offset_y - 1);
 
     if(!collision_left && !collision_right)
         data.x = data.x + velocity_x;
@@ -68,8 +68,8 @@ void AA2_Player::Update()
     
     velocity_y += gravity;
     new_y = data.y + velocity_y;
-    collision_top = CheckCollision(data.x, new_y) || CheckCollision(data.x + data.w - 1, new_y);
-    collision_bottom = CheckCollision(data.x, new_y + data.h - 1) || CheckCollision(data.x + data.w - 1, new_y + data.h - 1);
+    collision_top = CheckCollision(data.x + offset_x, new_y + offset_y) || CheckCollision(data.x + data.w - offset_x - 1, new_y + offset_y);
+    collision_bottom = CheckCollision(data.x + offset_x, new_y + data.h - offset_y - 1) || CheckCollision(data.x + data.w - offset_x - 1, new_y + data.h - offset_y - 1);
 
     if(!collision_top && !collision_bottom)
         data.y = data.y + velocity_y;
@@ -119,6 +119,8 @@ void AA2_Player::Render()
             SDL_RenderTexture(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst);
         else
             SDL_RenderTextureRotated(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst, 0, nullptr, SDL_FLIP_HORIZONTAL);
+
+    SDL_RenderRect(AA2_RefLinks::GetRenderer(), &dst);
 }
 
 bool AA2_Player::CheckCollision(int x, int y)

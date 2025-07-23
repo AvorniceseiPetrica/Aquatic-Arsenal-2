@@ -51,6 +51,7 @@ void AA2_Map::Render()
 {
     int x, y;
     SDL_Rect camera = AA2_RefLinks::GetCamera()->GetViewPort();
+    SDL_FRect rect;
 
     for(int i = 0; i < TILEMAP_HEIGHT; i++)
         for(int j = 0; j < TILEMAP_WIDTH; j++)
@@ -58,6 +59,12 @@ void AA2_Map::Render()
             x = j * TILE_WIDTH - camera.x;
             y = i * TILE_HEIGHT - camera.y;
             tile_manager.GetTile(tilemap[i][j])->Render(x, y);
+            rect.x = x;
+            rect.y = y;
+            rect.w = TILE_WIDTH;
+            rect.h = TILE_HEIGHT;
+            if(tile_manager.GetTile(tilemap[i][j])->IsSolid())
+                SDL_RenderRect(AA2_RefLinks::GetRenderer(), &rect);
         }
 }
 
