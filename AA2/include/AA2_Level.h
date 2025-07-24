@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AA2_Map.h"
-#include "AA2_Prop.h"
+#include "AA2_PropManager.h"
 
 class AA2_Level{
 
@@ -17,7 +17,7 @@ class AA2_Level{
         float background_width, background_height;
         float midground_width, midground_height;
         const float parralax_strength = 0.1;
-        AA2_Prop *props[6];
+        AA2_PropManager prop_manager;
 
     public:
 
@@ -28,4 +28,5 @@ class AA2_Level{
         void Render();
         AA2_Map* GetMap();
         SDL_Point GetPlayerSpawn();
+        void LoadProps(const char *props_config_path);
 };

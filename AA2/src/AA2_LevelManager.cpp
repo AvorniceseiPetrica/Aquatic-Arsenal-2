@@ -29,6 +29,7 @@ void AA2_LevelManager::Update()
 {
     player.Update();
     AA2_RefLinks::GetCamera()->Update();
+    
     if(player.GetRect()->x > MAP_WIDTH - TILE_WIDTH)
         ChangeLevel(++current_level_id);
 }

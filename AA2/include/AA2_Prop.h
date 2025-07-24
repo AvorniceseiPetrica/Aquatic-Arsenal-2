@@ -6,7 +6,7 @@ class AA2_Prop : public AA2_Drawable_Entity{
 
     protected:
 
-        const char* texture_path;
+        char texture_path[255];
 
     public:
 

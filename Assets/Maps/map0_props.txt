@@ -1,0 +1,3 @@
+Assets/Props/column1.png 100 1000
+Assets/Props/column2.png 400 1000
+Assets/Props/arch.png 1200 1000

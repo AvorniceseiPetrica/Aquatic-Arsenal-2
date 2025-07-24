@@ -23,7 +23,8 @@ SOURCES=$(sources_path)main.cpp \
 		$(sources_path)AA2_Level.cpp \
 		$(sources_path)AA2_Drawable_Entity.cpp \
 		$(sources_path)AA2_RefLinks.cpp \
-		$(sources_path)AA2_Prop.cpp
+		$(sources_path)AA2_Prop.cpp \
+		$(sources_path)AA2_PropManager.cpp
 
 $(exe): $(SOURCES)
 	g++ $(SOURCES) -Wall -o $(exe) -I$(SDL_include_path) -I$(AA2_include_path) -L$(SDL_libraries_path) -lSDL3 -lSDL3_image
