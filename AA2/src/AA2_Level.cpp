@@ -4,7 +4,7 @@
 #include "AA2_RefLinks.h"
 #include <fstream>
 
-AA2_Level::AA2_Level(const char *p_map_path, const char *p_background_path, const char *p_midground_path, SDL_Point p_player_spawn)
+AA2_Level::AA2_Level(const char *p_map_path, const char *p_prop_map_path,const char *p_background_path, const char *p_midground_path, SDL_Point p_player_spawn)
 {
     if(p_map_path == nullptr)
         SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_map_path) >>\n\n");
@@ -15,11 +15,15 @@ AA2_Level::AA2_Level(const char *p_map_path, const char *p_background_path, cons
             if(p_midground_path == nullptr)
                 SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_midground_path) >>\n\n");
             else
-            {
-                map_path = p_map_path;
-                background_path = p_background_path;
-                midground_path = p_midground_path;
-            }
+                if(p_prop_map_path == nullptr)
+                    SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_prop_map_path) >>\n\n");
+                else
+                {
+                    map_path = p_map_path;
+                    background_path = p_background_path;
+                    midground_path = p_midground_path;
+                    prop_map_path = p_prop_map_path;
+                }
     
     player_spawn.x = p_player_spawn.x;
     player_spawn.y = p_player_spawn.y;
@@ -40,7 +44,7 @@ void AA2_Level::Init()
     SDL_GetTextureSize(background, &background_width, &background_height);
     SDL_GetTextureSize(midground, &midground_width, &midground_height);
 
-    LoadProps("Assets/Maps/map0_props.txt");
+    LoadProps(prop_map_path);
 }
 
 void AA2_Level::Update()

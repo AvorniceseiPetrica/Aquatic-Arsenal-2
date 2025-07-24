@@ -18,10 +18,11 @@ class AA2_Level{
         float midground_width, midground_height;
         const float parralax_strength = 0.1;
         AA2_PropManager prop_manager;
+        const char *prop_map_path;
 
     public:
 
-        AA2_Level(const char *p_map_path, const char *p_background_path, const char *p_midground_path, SDL_Point p_player_spawn);
+        AA2_Level(const char *p_map_path, const char *p_prop_map_path, const char *p_background_path, const char *p_midground_path, SDL_Point p_player_spawn);
         ~AA2_Level();
         void Init();
         void Update();
