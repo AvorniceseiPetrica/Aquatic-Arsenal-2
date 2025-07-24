@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL3/SDL.h>
+#include <string>
 
 #include "AA2_State.h"
 #include "AA2_RefLinks.h"
@@ -20,8 +21,8 @@ class AA2_Game{
         
         AA2_Game();
         ~AA2_Game();
-        void Init(const char *title);
-        void InitSDL(const char *title);
+        void Init(std::string title);
+        void InitSDL(std::string title);
         void CleanSDL();
         void Update();
         void Render();

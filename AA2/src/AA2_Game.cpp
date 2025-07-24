@@ -20,14 +20,14 @@ AA2_Game::~AA2_Game()
     CleanSDL();
 }
 
-void AA2_Game::Init(const char* title)
+void AA2_Game::Init(std::string title)
 {
     InitSDL(title);
     reflinks.Init_Graphics(window, renderer);
     current_state->Init();
 }
 
-void AA2_Game::InitSDL(const char* title)
+void AA2_Game::InitSDL(std::string title)
 {
     if(!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -38,7 +38,7 @@ void AA2_Game::InitSDL(const char* title)
     {
         SDL_Log("Initialized video subsystems...\n");
         is_running = true;
-        window = SDL_CreateWindow(title, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+        window = SDL_CreateWindow(title.c_str(), WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
         if(window == nullptr)
         {

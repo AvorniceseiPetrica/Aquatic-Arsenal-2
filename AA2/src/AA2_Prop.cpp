@@ -3,12 +3,9 @@
 #include "AA2_TextureLoader.h"
 #include "AA2_RefLinks.h"
 
-AA2_Prop::AA2_Prop(const char *p_texture_path)
+AA2_Prop::AA2_Prop(std::string p_texture_path)
 {
-    if(p_texture_path == nullptr)
-        SDL_Log("\n\tAA2_Prop::Init()\t<< Provided NULL for (const char *texture_path) >>\n\n");
-    else
-        strcpy(texture_path, p_texture_path);
+    texture_path = p_texture_path;
 }
 
 AA2_Prop::~AA2_Prop()
@@ -18,7 +15,7 @@ AA2_Prop::~AA2_Prop()
 
 void AA2_Prop::Init(int x, int y)
 {
-    texture = AA2_TextureLoader::LoadTexture(texture_path);
+    texture = AA2_TextureLoader::LoadTexture(texture_path.c_str());
 
     float txt_width, txt_height;
 

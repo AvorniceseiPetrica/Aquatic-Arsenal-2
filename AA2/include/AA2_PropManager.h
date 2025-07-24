@@ -14,6 +14,6 @@ class AA2_PropManager{
 
         AA2_PropManager();
         ~AA2_PropManager();
-        void AddProp(const char *texture_path, int x, int y);
+        void AddProp(std::string texture_path, int x, int y);
         void RenderProps();
 };

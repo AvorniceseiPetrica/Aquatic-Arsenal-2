@@ -20,30 +20,25 @@ void AA2_Map::Init()
     SDL_Log("Initialized map...\n");
 }
 
-void AA2_Map::LoadMap(const char* map_path)
+void AA2_Map::LoadMap(std::string map_path)
 {
-    if(map_path == nullptr)
-        SDL_Log("\n\tAA2_Map::LoadMap()\t<< Provided NULL for (const char *map_path) >>\n\n");
+    std::ifstream f;
+
+    f.open(map_path);
+
+    if(!f.is_open())
+        SDL_Log("\n\tAA2_Map::LoadMap()\t<< Could not open map file >>\n\n");
     else
     {
-        std::ifstream f;
-
-        f.open(map_path);
-
-        if(!f.is_open())
-            SDL_Log("\n\tAA2_Map::LoadMap()\t<< Could not open map file >>\n\n");
-        else
-        {
-            for(int i = 0; i < TILEMAP_HEIGHT; i++)
-                for(int j = 0; j < TILEMAP_WIDTH; j++)
-                {
-                    f>>tilemap[i][j];
-                }
-        }
-
-        f.close();
+        for(int i = 0; i < TILEMAP_HEIGHT; i++)
+            for(int j = 0; j < TILEMAP_WIDTH; j++)
+            {
+                f>>tilemap[i][j];
+            }
     }
 
+    f.close();
+    
     SDL_Log("Loaded map...\n");
 }
 
@@ -63,8 +58,8 @@ void AA2_Map::Render()
             rect.y = y;
             rect.w = TILE_WIDTH;
             rect.h = TILE_HEIGHT;
-            if(tile_manager.GetTile(tilemap[i][j])->IsSolid())
-                SDL_RenderRect(AA2_RefLinks::GetRenderer(), &rect);
+            // if(tile_manager.GetTile(tilemap[i][j])->IsSolid())
+            //     SDL_RenderRect(AA2_RefLinks::GetRenderer(), &rect);
         }
 }
 

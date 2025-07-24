@@ -94,7 +94,7 @@ void AA2_TileManager::Init()
     SDL_Log("Loaded tiles...\n");
 }
 
-void AA2_TileManager::LoadTileTexture(int id, const char* texture_path)
+void AA2_TileManager::LoadTileTexture(int id, std::string texture_path)
 {
     SDL_Texture *tile_texture = AA2_TextureLoader::LoadTexture(texture_path);
     tiles[id]->SetTexture(tile_texture);

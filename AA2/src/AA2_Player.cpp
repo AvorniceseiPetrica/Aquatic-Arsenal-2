@@ -120,7 +120,7 @@ void AA2_Player::Render()
         else
             SDL_RenderTextureRotated(AA2_RefLinks::GetRenderer(), frames[current_frame / 6], nullptr, &dst, 0, nullptr, SDL_FLIP_HORIZONTAL);
 
-    SDL_RenderRect(AA2_RefLinks::GetRenderer(), &dst);
+    //SDL_RenderRect(AA2_RefLinks::GetRenderer(), &dst);
 }
 
 bool AA2_Player::CheckCollision(int x, int y)

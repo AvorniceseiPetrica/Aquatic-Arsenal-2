@@ -4,26 +4,12 @@
 #include "AA2_RefLinks.h"
 #include <fstream>
 
-AA2_Level::AA2_Level(const char *p_map_path, const char *p_prop_map_path,const char *p_background_path, const char *p_midground_path, SDL_Point p_player_spawn)
+AA2_Level::AA2_Level(std::string p_map_path, std::string p_prop_map_path, std::string p_background_path, std::string p_midground_path, SDL_Point p_player_spawn)
 {
-    if(p_map_path == nullptr)
-        SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_map_path) >>\n\n");
-    else
-        if(p_background_path == nullptr)
-            SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_background_path) >>\n\n");
-        else
-            if(p_midground_path == nullptr)
-                SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_midground_path) >>\n\n");
-            else
-                if(p_prop_map_path == nullptr)
-                    SDL_Log("\n\tAA2_Level::AA2_Level()\t<< Provided NULL for (const char *p_prop_map_path) >>\n\n");
-                else
-                {
-                    map_path = p_map_path;
-                    background_path = p_background_path;
-                    midground_path = p_midground_path;
-                    prop_map_path = p_prop_map_path;
-                }
+    map_path = p_map_path;
+    background_path = p_background_path;
+    midground_path = p_midground_path;
+    prop_map_path = p_prop_map_path;
     
     player_spawn.x = p_player_spawn.x;
     player_spawn.y = p_player_spawn.y;
@@ -85,27 +71,21 @@ SDL_Point AA2_Level::GetPlayerSpawn()
     return player_spawn;
 }
 
-void AA2_Level::LoadProps(const char *props_config_path)
+void AA2_Level::LoadProps(std::string props_config_path)
 {
-    if(props_config_path == nullptr) 
-        SDL_Log("\n\tAA2_Level::LoadProps()\t<< Provided NULL for (const char *props_config_path) >>\n\n");
+    std::ifstream config;
+
+    config.open(props_config_path);
+
+    if(!config.is_open())
+        SDL_Log("\n\tAA2_Level::LoadProps()\t<< Could not open config file >>\n\n");
     else
-    {
-        std::ifstream config;
+        while(!config.eof())
+        {
+            char a[100];
+            int x, y;
 
-        config.open(props_config_path);
-
-        if(!config.is_open())
-            SDL_Log("\n\tAA2_Level::LoadProps()\t<< Could not open config file >>\n\n");
-        else
-            while(!config.eof())
-            {
-                char a[100];
-                int x, y;
-
-                config>>a>>x>>y;
-                SDL_Log("Path: %s | x = %d | y = %d\n", a, x, y);
-                prop_manager.AddProp(a, x, y);
-            }
-    }
+            config>>a>>x>>y;
+            prop_manager.AddProp(a, x, y);
+        }
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "AA2_TileManager.h"
 
 class AA2_Map{
@@ -14,7 +16,7 @@ class AA2_Map{
         AA2_Map();
         ~AA2_Map();
         void Init();
-        void LoadMap(const char* map_path);
+        void LoadMap(std::string map_path);
         void Render();
         void PrintMapInfo();
         int GetTileId(int i, int j);
